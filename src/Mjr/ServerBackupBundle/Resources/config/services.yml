@@ -1,0 +1,4 @@
+services:
+#    mjr_server_backup.example:
+#        class: Mjr\ServerBackupBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

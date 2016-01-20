@@ -1,0 +1,4 @@
+services:
+#    mjr_server_firewall.example:
+#        class: Mjr\ServerFirewallBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

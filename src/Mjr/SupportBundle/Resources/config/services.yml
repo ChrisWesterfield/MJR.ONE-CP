@@ -1,0 +1,4 @@
+services:
+#    mjr_support.example:
+#        class: Mjr\SupportBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
