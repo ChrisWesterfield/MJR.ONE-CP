@@ -1,6 +1,6 @@
 {
-    "name": "root/cp",
-    "license": "proprietary",
+    "name": "MJRONE/CP",
+    "license": "Apache-2.0",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -16,6 +16,10 @@
             "Tests\\": "tests/"
         }
     },
+    "config":
+    {
+        "vendor-dir": "var/vendor"
+    },
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.0.*",
@@ -26,11 +30,34 @@
         "symfony/monolog-bundle": "^2.8",
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "^2.0"
+        "incenteev/composer-parameter-handler": "^2.0",
+	"oyejorge/less.php": "~1.5",
+	"twbs/bootstrap": "3.*",
+        "components/jquery":"2.*",
+        "components/font-awesome": "*",
+        "tecnickcom/tcpdf": "6.*",
+	"friendsofsymfony/elastica-bundle": "dev-master",
+        "pagerfanta/pagerfanta": "dev-master",
+        "ambta/doctrine-encrypt-bundle": "2.4.*",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "components/bootstrap-switch": "dev-master",
+	"moment/moment": "2.10.6",
+        "yubico/u2flib-server": "^0.1.0",
+        "endroid/qrcode": "~1.0",
+        "sonata-project/google-authenticator": "~1.0",
+	"doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "mopa/bootstrap-bundle": "dev-master",
+        "craue/formflow-bundle": "~3.0@dev",
+        "components/jqueryui": "1.11.4",
+        "snc/redis-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^2.7"
+        "symfony/phpunit-bridge": "^2.7",
+	"andres-montanez/magallanes": "~1.0.1",
+        "raulfraile/ladybug-bundle": "~1.0",
+        "raulfraile/ladybug-plugin-extra": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [
