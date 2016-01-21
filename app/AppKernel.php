@@ -1,5 +1,63 @@
 <?php
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Mjr\Frontend\APSBundle\MjrFrontendAPSBundle;
+use Mjr\Frontend\ClientBundle\MjrFrontendClientBundle;
+use Mjr\Frontend\DashboardBundle\MjrFrontendDashboardBundle;
+use Mjr\Frontend\DNSBundle\MjrFrontendDNSBundle;
+use Mjr\Frontend\Email\AccountsBundle\MjrFrontendEmailAccountsBundle;
+use Mjr\Frontend\Email\FetchmailBundle\MjrFrontendEmailFetchmailBundle;
+use Mjr\Frontend\Email\FiltersBundle\MjrFrontendEmailFiltersBundle;
+use Mjr\Frontend\Email\ListBundle\MjrFrontendEmailListBundle;
+use Mjr\Frontend\Email\SpamBundle\MjrFrontendEmailSpamBundle;
+use Mjr\Frontend\Email\XmppBundle\MjrFrontendEmailXmppBundle;
+use Mjr\Frontend\HelpBundle\MjrFrontendHelpBundle;
+use Mjr\Frontend\MessageBundle\MjrFrontendMessageBundle;
+use Mjr\Frontend\Monitoring\CPBundle\MjrFrontendMonitoringCPBundle;
+use Mjr\Frontend\Monitoring\LogBundle\MjrFrontendMonitoringLogBundle;
+use Mjr\Frontend\Monitoring\ServerBundle\MjrFrontendMonitoringServerBundle;
+use Mjr\Frontend\ResellerBundle\MjrFrontendResellerBundle;
+use Mjr\Frontend\Sites\AccessBundle\MjrFrontendSitesAccessBundle;
+use Mjr\Frontend\Sites\CronBundle\MjrFrontendSitesCronBundle;
+use Mjr\Frontend\Sites\DatabaseBundle\MjrFrontendSitesDatabaseBundle;
+use Mjr\Frontend\Sites\ShellBundle\MjrFrontendSitesShellBundle;
+use Mjr\Frontend\Sites\WebBundle\MjrFrontendSitesWebBundle;
+use Mjr\Frontend\StatisticsBundle\MjrFrontendStatisticsBundle;
+use Mjr\Frontend\SupportBundle\MjrFrontendSupportBundle;
+use Mjr\Frontend\System\APSBundle\MjrFrontendSystemAPSBundle;
+use Mjr\Frontend\System\ConfigBundle\MjrFrontendSystemConfigBundle;
+use Mjr\Frontend\System\RemoteBundle\MjrFrontendSystemRemoteBundle;
+use Mjr\Frontend\System\UserBundle\MjrFrontendSystemUserBundle;
+use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
+use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
+use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
+use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
+use Mjr\Server\BackupBundle\MjrServerBackupBundle;
+use Mjr\Server\ClientBundle\MjrServerClientBundle;
+use Mjr\Server\CronBundle\MjrServerCronBundle;
+use Mjr\Server\DatabaseBundle\MjrServerDatabaseBundle;
+use Mjr\Server\DnsBundle\MjrServerDnsBundle;
+use Mjr\Server\InstallBundle\MjrServerInstallBundle;
+use Mjr\Server\MailBundle\MjrServerMailBundle;
+use Mjr\Server\MonitorBundle\MjrServerMonitorBundle;
+use Mjr\Server\RemoteBundle\MjrServerRemoteBundle;
+use Mjr\Server\RescueBundle\MjrServerRescueBundle;
+use Mjr\Server\ServerBundle\MjrServerServerBundle;
+use Mjr\Server\VMBundle\MjrServerVMBundle;
+use Mjr\Server\WebBundle\MjrServerWebBundle;
+use Mjr\Server\XMPPBundle\MjrServerXMPPBundle;
+use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
+use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
+use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
+use Snc\RedisBundle\SncRedisBundle;
+use Symfony\Bundle\AsseticBundle\AsseticBundle;
+use Symfony\Bundle\DebugBundle\DebugBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\MonologBundle\MonologBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
+use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Bundle\WebProfilerBundle\WebProfilerBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -8,66 +66,80 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = [
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-	    new Snc\RedisBundle\SncRedisBundle(),
-            new Mjr\Library\ToolsBundle\MjrLibraryToolsBundle(),
-            new Mjr\Frontend\DashboardBundle\MjrFrontendDashboardBundle(),
-            new Mjr\Frontend\ClientBundle\MjrFrontendClientBundle(),
-            new Mjr\Frontend\ResellerBundle\MjrFrontendResellerBundle(),
-            new Mjr\Frontend\MessageBundle\MjrFrontendMessageBundle(),
-            new Mjr\Frontend\Sites\WebBundle\MjrFrontendSitesWebBundle(),
-            new Mjr\Frontend\Sites\DatabaseBundle\MjrFrontendSitesDatabaseBundle(),
-            new Mjr\Frontend\Sites\AccessBundle\MjrFrontendSitesAccessBundle(),
-            new Mjr\Frontend\Sites\ShellBundle\MjrFrontendSitesShellBundle(),
-            new Mjr\Frontend\Sites\CronBundle\MjrFrontendSitesCronBundle(),
-            new Mjr\Frontend\APSBundle\MjrFrontendAPSBundle(),
-            new Mjr\Frontend\StatisticsBundle\MjrFrontendStatisticsBundle(),
-            new Mjr\Frontend\Email\AccountsBundle\MjrFrontendEmailAccountsBundle(),
-            new Mjr\Frontend\Email\ListBundle\MjrFrontendEmailListBundle(),
-            new Mjr\Frontend\Email\SpamBundle\MjrFrontendEmailSpamBundle(),
-            new Mjr\Frontend\Email\FetchmailBundle\MjrFrontendEmailFetchmailBundle(),
-            new Mjr\Frontend\Email\XmppBundle\MjrFrontendEmailXmppBundle(),
-            new Mjr\Frontend\Email\FiltersBundle\MjrFrontendEmailFiltersBundle(),
-            new Mjr\Frontend\DNSBundle\MjrFrontendDNSBundle(),
-            new Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle(),
-            new Mjr\Frontend\Monitoring\CPBundle\MjrFrontendMonitoringCPBundle(),
-            new Mjr\Frontend\Monitoring\ServerBundle\MjrFrontendMonitoringServerBundle(),
-            new Mjr\Frontend\Monitoring\LogBundle\MjrFrontendMonitoringLogBundle(),
-            new Mjr\Frontend\HelpBundle\MjrFrontendHelpBundle(),
-            new Mjr\Frontend\SupportBundle\MjrFrontendSupportBundle(),
-            new Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle(),
-            new Mjr\Frontend\System\UserBundle\MjrFrontendSystemUserBundle(),
-            new Mjr\Frontend\System\ConfigBundle\MjrFrontendSystemConfigBundle(),
-            new Mjr\Frontend\System\RemoteBundle\MjrFrontendSystemRemoteBundle(),
-            new Mjr\Frontend\System\APSBundle\MjrFrontendSystemAPSBundle(),
-            new Mjr\Server\ClientBundle\MjrServerClientBundle(),
-            new Mjr\Server\CronBundle\MjrServerCronBundle(),
-            new Mjr\Server\DatabaseBundle\MjrServerDatabaseBundle(),
-            new Mjr\Server\DnsBundle\MjrServerDnsBundle(),
-            new Mjr\Server\MailBundle\MjrServerMailBundle(),
-            new Mjr\Server\MonitorBundle\MjrServerMonitorBundle(),
-            new Mjr\Server\RemoteBundle\MjrServerRemoteBundle(),
-            new Mjr\Server\RescueBundle\MjrServerRescueBundle(),
-            new Mjr\Server\ServerBundle\MjrServerServerBundle(),
-            new Mjr\Server\VMBundle\MjrServerVMBundle(),
-            new Mjr\Server\WebBundle\MjrServerWebBundle(),
-            new Mjr\Server\XMPPBundle\MjrServerXMPPBundle(),
-            new Mjr\Server\BackupBundle\MjrServerBackupBundle(),
-            new Mjr\Server\InstallBundle\MjrServerInstallBundle(),
-            new Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle(),
+            //Symfony Framework
+            new FrameworkBundle(),
+            new SecurityBundle(),
+            new TwigBundle(),
+            new MonologBundle(),
+            new SwiftmailerBundle(),
+            new DoctrineBundle(),
+            new SensioFrameworkExtraBundle(),
+            //Caching
+	        new SncRedisBundle(),
+            //Asstic
+            new AsseticBundle(),
+            //Library
+            new MjrLibraryToolsBundle(),
+            new MjrLibraryEntitiesBundle(),
+            //Frontend
+            new MjrFrontendDashboardBundle(),
+            new MjrFrontendClientBundle(),
+            new MjrFrontendResellerBundle(),
+            new MjrFrontendMessageBundle(),
+            new MjrFrontendSitesWebBundle(),
+            new MjrFrontendSitesDatabaseBundle(),
+            new MjrFrontendSitesAccessBundle(),
+            new MjrFrontendSitesShellBundle(),
+            new MjrFrontendSitesCronBundle(),
+            new MjrFrontendAPSBundle(),
+            new MjrFrontendStatisticsBundle(),
+            new MjrFrontendEmailAccountsBundle(),
+            new MjrFrontendEmailListBundle(),
+            new MjrFrontendEmailSpamBundle(),
+            new MjrFrontendEmailFetchmailBundle(),
+            new MjrFrontendEmailXmppBundle(),
+            new MjrFrontendEmailFiltersBundle(),
+            new MjrFrontendDNSBundle(),
+            new MjrFrontendvServerBundle(),
+            new MjrFrontendMonitoringCPBundle(),
+            new MjrFrontendMonitoringServerBundle(),
+            new MjrFrontendMonitoringLogBundle(),
+            new MjrFrontendHelpBundle(),
+            new MjrFrontendSupportBundle(),
+            new MjrFrontendToolsBundle(),
+            new MjrFrontendSystemUserBundle(),
+            new MjrFrontendSystemConfigBundle(),
+            new MjrFrontendSystemRemoteBundle(),
+            new MjrFrontendSystemAPSBundle(),
         ];
 
+        //Console Application
+        if($this->getEnvironment()=='console')
+        {
+            $consoleBundles = array(
+                new MjrServerClientBundle(),
+                new MjrServerCronBundle(),
+                new MjrServerDatabaseBundle(),
+                new MjrServerDnsBundle(),
+                new MjrServerMailBundle(),
+                new MjrServerMonitorBundle(),
+                new MjrServerRemoteBundle(),
+                new MjrServerRescueBundle(),
+                new MjrServerServerBundle(),
+                new MjrServerVMBundle(),
+                new MjrServerWebBundle(),
+                new MjrServerXMPPBundle(),
+                new MjrServerBackupBundle(),
+                new MjrServerInstallBundle(),
+            );
+            $bundles = array_merge($bundles,$consoleBundles);
+        }
+
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new DebugBundle();
+            $bundles[] = new WebProfilerBundle();
+            $bundles[] = new SensioDistributionBundle();
+            $bundles[] = new SensioGeneratorBundle();
         }
 
         return $bundles;
