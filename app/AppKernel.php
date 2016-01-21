@@ -49,6 +49,7 @@ class AppKernel extends Kernel
             new Mjr\ServerSoftwareBundle\MjrServerSoftwareBundle(),
             new Mjr\ServerMailBundle\MjrServerMailBundle(),
             new Mjr\SecurityBundle\MjrSecurityBundle(),
+            new Mjr\Library\ToolsBundle\MjrLibraryToolsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
