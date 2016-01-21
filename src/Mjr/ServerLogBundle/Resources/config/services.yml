@@ -1,4 +1,0 @@
-services:
-#    mjr_server_log.example:
-#        class: Mjr\ServerLogBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

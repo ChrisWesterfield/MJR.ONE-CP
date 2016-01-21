@@ -1,4 +1,0 @@
-services:
-#    mjr_server_monitor.example:
-#        class: Mjr\ServerMonitorBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

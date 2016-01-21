@@ -1,4 +1,0 @@
-services:
-#    mjr_email.example:
-#        class: Mjr\EmailBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

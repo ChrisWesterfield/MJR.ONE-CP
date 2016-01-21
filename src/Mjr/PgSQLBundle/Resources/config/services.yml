@@ -1,4 +1,0 @@
-services:
-#    mjr_pg_sql.example:
-#        class: Mjr\PgSQLBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

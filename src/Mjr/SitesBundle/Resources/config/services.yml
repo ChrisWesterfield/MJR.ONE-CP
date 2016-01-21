@@ -1,4 +1,0 @@
-services:
-#    mjr_sites.example:
-#        class: Mjr\SitesBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]

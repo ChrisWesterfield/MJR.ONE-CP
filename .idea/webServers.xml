@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ca0cd90b-1ee9-4a31-9860-a6ab1c0c4488" name="MJRONE-CP" url="http://cp.mjr.one">
+        <fileTransfer host="cp.mjr.one" port="22" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/usr/local/ispconfig/cp" accessType="SFTP" username="ispconfig" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
