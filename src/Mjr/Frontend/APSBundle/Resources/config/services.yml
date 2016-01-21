@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_aps.example:
+#        class: Mjr\Frontend\APSBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

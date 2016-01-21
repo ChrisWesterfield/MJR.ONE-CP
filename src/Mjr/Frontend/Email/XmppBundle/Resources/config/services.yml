@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_email_xmpp.example:
+#        class: Mjr\Frontend\Email\XmppBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

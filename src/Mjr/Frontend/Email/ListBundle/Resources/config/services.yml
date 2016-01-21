@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_email_list.example:
+#        class: Mjr\Frontend\Email\ListBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

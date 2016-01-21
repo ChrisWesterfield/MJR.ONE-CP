@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_sites_cron.example:
+#        class: Mjr\Frontend\Sites\CronBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

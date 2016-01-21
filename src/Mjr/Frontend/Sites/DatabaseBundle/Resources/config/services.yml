@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_sites_database.example:
+#        class: Mjr\Frontend\Sites\DatabaseBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

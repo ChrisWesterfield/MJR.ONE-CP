@@ -1,0 +1,4 @@
+services:
+#    mjr_frontend_email_fetchmail.example:
+#        class: Mjr\Frontend\Email\FetchmailBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

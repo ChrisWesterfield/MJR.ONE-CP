@@ -1,1 +1,220 @@
+mjr_library_entities:
+    resource: "@MjrLibraryEntitiesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_install:
+    resource: "@MjrServerInstallBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_backup:
+    resource: "@MjrServerBackupBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_xmpp:
+    resource: "@MjrServerXMPPBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_web:
+    resource: "@MjrServerWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_vm:
+    resource: "@MjrServerVMBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_server:
+    resource: "@MjrServerServerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_rescue:
+    resource: "@MjrServerRescueBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_remote:
+    resource: "@MjrServerRemoteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_monitor:
+    resource: "@MjrServerMonitorBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_mail:
+    resource: "@MjrServerMailBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_dns:
+    resource: "@MjrServerDnsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_database:
+    resource: "@MjrServerDatabaseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_cron:
+    resource: "@MjrServerCronBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_server_client:
+    resource: "@MjrServerClientBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_system_aps:
+    resource: "@MjrFrontendSystemAPSBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_system_remote:
+    resource: "@MjrFrontendSystemRemoteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_system_config:
+    resource: "@MjrFrontendSystemConfigBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_system_user:
+    resource: "@MjrFrontendSystemUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_tools:
+    resource: "@MjrFrontendToolsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_support:
+    resource: "@MjrFrontendSupportBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_help:
+    resource: "@MjrFrontendHelpBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_monitoring_log:
+    resource: "@MjrFrontendMonitoringLogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_monitoring_server:
+    resource: "@MjrFrontendMonitoringServerBundle/Resources/config/routing.xml"
+    prefix:   /
+
+mjr_frontend_monitoring_cp:
+    resource: "@MjrFrontendMonitoringCPBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontendv_server:
+    resource: "@MjrFrontendvServerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_dns:
+    resource: "@MjrFrontendDNSBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_filters:
+    resource: "@MjrFrontendEmailFiltersBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_xmpp:
+    resource: "@MjrFrontendEmailXmppBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_fetchmail:
+    resource: "@MjrFrontendEmailFetchmailBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_spam:
+    resource: "@MjrFrontendEmailSpamBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_list:
+    resource: "@MjrFrontendEmailListBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_email_accounts:
+    resource: "@MjrFrontendEmailAccountsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_statistics:
+    resource: "@MjrFrontendStatisticsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_aps:
+    resource: "@MjrFrontendAPSBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_sites_cron:
+    resource: "@MjrFrontendSitesCronBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_sites_shell:
+    resource: "@MjrFrontendSitesShellBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_sites_access:
+    resource: "@MjrFrontendSitesAccessBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_sites_database:
+    resource: "@MjrFrontendSitesDatabaseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_sites_web:
+    resource: "@MjrFrontendSitesWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_message:
+    resource: "@MjrFrontendMessageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_reseller:
+    resource: "@MjrFrontendResellerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_client:
+    resource: "@MjrFrontendClientBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mjr_frontend_dashboard:
+    resource: "@MjrFrontendDashboardBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 y
