@@ -1,0 +1,11 @@
+parameters:
+  mjr_library_tools.data_collector.opcache.class: Mjr\Library\ToolsBundle\DataCollector\OpcacheDataCollector
+
+services:
+
+    mjr_library_tools.data_collector.opcache:
+        class: %mjr_library_tools.data_collector.opcache.class%
+        public: false
+        tags:
+          -  { name: data_collector, template: 'MjrLibraryToolsBundle:Collector:opcache.html.twig', id: opcache  }
+        arguments: [ '%mjr_library_tools.data_collector.show_filelist%' ]

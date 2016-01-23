@@ -1,0 +1,11 @@
+parameters:
+    mjr_library_tools.data_collector.routing.class: Mjr\Library\ToolsBundle\DataCollector\RoutingDataCollector
+
+services:
+
+    mjr_library_tools.data_collector.routing:
+        class: %mjr_library_tools.data_collector.routing.class%
+        public: false
+        tags:
+            - { name: data_collector, template: 'MjrLibraryToolsBundle:Collector:routing.html.twig', id: library_routing }
+        arguments: ['@router', '%mjr_library_tools.WebProfiler.routing.display_in_wdt%']

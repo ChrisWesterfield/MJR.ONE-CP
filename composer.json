@@ -34,7 +34,7 @@
         "oyejorge/less.php": "~1.5",
         "twbs/bootstrap": "3.*",
         "components/jquery":"2.*",
-        "components/font-awesome": "*",
+        "components/font-awesome": "4.*",
         "tecnickcom/tcpdf": "6.*",
 	    "friendsofsymfony/elastica-bundle": "dev-master",
         "pagerfanta/pagerfanta": "dev-master",
@@ -51,7 +51,8 @@
         "craue/formflow-bundle": "~3.0@dev",
         "components/jqueryui": "1.11.4",
         "snc/redis-bundle": "dev-master",
-        "symfony/assetic-bundle": "2.7.*"
+        "symfony/assetic-bundle": "2.7.*",
+        "knplabs/knp-menu-bundle": "2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

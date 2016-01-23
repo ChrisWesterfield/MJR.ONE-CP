@@ -1,0 +1,10 @@
+parameters:
+    mjr_library_tools.data_collector.container.class: Mjr\Library\ToolsBundle\DataCollector\ContainerDataCollector
+
+services:
+    mjr_library_tools.data_collector.container:
+        class: %mjr_library_tools.data_collector.container.class%
+        public: false
+        tags:
+            - { name: data_collector, template: 'MjrLibraryToolsBundle:Collector:container.html.twig', id: elao_container }
+        arguments: ['@kernel', '%mjr_library_tools.WebProfiler.container.display_in_wdt%']

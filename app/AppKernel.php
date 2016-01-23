@@ -1,6 +1,10 @@
 <?php
 
+use Ambta\DoctrineEncryptBundle\AmbtaDoctrineEncryptBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
+use FOS\ElasticaBundle\FOSElasticaBundle;
+use Knp\Bundle\MenuBundle\KnpMenuBundle;
 use Mjr\Frontend\APSBundle\MjrFrontendAPSBundle;
 use Mjr\Frontend\ClientBundle\MjrFrontendClientBundle;
 use Mjr\Frontend\DashboardBundle\MjrFrontendDashboardBundle;
@@ -46,10 +50,12 @@ use Mjr\Server\ServerBundle\MjrServerServerBundle;
 use Mjr\Server\VMBundle\MjrServerVMBundle;
 use Mjr\Server\WebBundle\MjrServerWebBundle;
 use Mjr\Server\XMPPBundle\MjrServerXMPPBundle;
+use Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle;
 use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
 use Snc\RedisBundle\SncRedisBundle;
+use Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle;
 use Symfony\Bundle\AsseticBundle\AsseticBundle;
 use Symfony\Bundle\DebugBundle\DebugBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
@@ -81,6 +87,15 @@ class AppKernel extends Kernel
             //Library
             new MjrLibraryToolsBundle(),
             new MjrLibraryEntitiesBundle(),
+            //Doctrine Extensions
+            new AmbtaDoctrineEncryptBundle(),
+            new DoctrineMigrationsBundle(),
+            new StofDoctrineExtensionsBundle(),
+            //Template Extensions
+            new MopaBootstrapBundle(),
+            new KnpMenuBundle(),
+            //Elastic Search
+            new FOSElasticaBundle(),
             //Frontend
             new MjrFrontendDashboardBundle(),
             new MjrFrontendClientBundle(),
@@ -111,6 +126,8 @@ class AppKernel extends Kernel
             new MjrFrontendSystemConfigBundle(),
             new MjrFrontendSystemRemoteBundle(),
             new MjrFrontendSystemAPSBundle(),
+            //themes
+            new Mjr\Theme\AdminLTEBundle\MjrThemeAdminLTEBundle(),
         ];
 
         //Console Application
@@ -140,6 +157,11 @@ class AppKernel extends Kernel
             $bundles[] = new WebProfilerBundle();
             $bundles[] = new SensioDistributionBundle();
             $bundles[] = new SensioGeneratorBundle();
+            MjrLibraryToolsBundle::setEnvMode();
+        }
+        else
+        {
+            define('env_mode',false);
         }
 
         return $bundles;

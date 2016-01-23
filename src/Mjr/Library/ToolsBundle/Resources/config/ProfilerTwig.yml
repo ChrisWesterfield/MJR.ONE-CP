@@ -1,0 +1,11 @@
+parameters:
+    mjr_library_tools.data_collector.twig.class: Mjr\Library\ToolsBundle\DataCollector\TwigDataCollector
+    mjr_library_tools.templating.engine.twig.class: Mjr\Library\ToolsBundle\Twig\TwigProfilerEngine
+services:
+
+    mjr_library_tools.data_collector.twig:
+        class: %mjr_library_tools.data_collector.twig.class%
+        public: false
+        tags:
+            - { name: data_collector, template: 'MjrLibraryToolsBundle:Collector:twig.html.twig', id: library_twig }
+        arguments: ['@service_container', '%mjr_library_tools.WebProfiler.twig.display_in_wdt%']
