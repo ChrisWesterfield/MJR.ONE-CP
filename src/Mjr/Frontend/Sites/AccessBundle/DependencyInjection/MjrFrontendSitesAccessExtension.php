@@ -11,6 +11,10 @@ use Symfony\Component\DependencyInjection\Loader;
  * This is the class that loads and manages your bundle configuration.
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
+ * @author Chris Westerfield <chris@MJR.ONE>
+ * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
+ * @copyright MJR.ONE Group
+ * @link http://www.MJR.ONE
  */
 class MjrFrontendSitesAccessExtension extends Extension
 {

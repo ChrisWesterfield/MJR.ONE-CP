@@ -6,6 +6,14 @@
     use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
     use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+    /**
+     * Class ProfilerCompilerPass
+     * @package Mjr\Library\ToolsBundle\CompilerPass
+     * @author Chris Westerfield <chris@MJR.ONE>
+     * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
+     * @copyright MJR.ONE Group
+     * @link http://www.MJR.ONE
+     */
     class ProfilerCompilerPass implements CompilerPassInterface
     {
 

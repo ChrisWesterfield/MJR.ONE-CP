@@ -4,14 +4,40 @@ namespace Mjr\Library\ToolsBundle\Twig;
 
 use Mjr\Library\ToolsBundle\DataCollector\TwigDataCollector;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Twig_Environment;
+use Twig_LoaderInterface;
 
+/**
+ * Class TwigProfilerEngine
+ * Twig Profiler Engine
+ * @package Mjr\Library\ToolsBundle\Twig
+ * @author Chris Westerfield <chris@MJR.ONE>
+ * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
+ * @copyright MJR.ONE Group
+ * @link http://www.MJR.ONE
+ */
 class TwigProfilerEngine extends TwigEngine
 {
+    /**
+     * @var Twig_Environment
+     */
     protected $environment;
+    /**
+     * @var TwigEngine
+     */
     protected $twigEngine;
+    /**
+     * @var TwigDataCollector
+     */
     protected $collector;
 
-    public function __construct(\Twig_Environment $environment, TwigEngine $twigEngine, TwigDataCollector $collector)
+    /**
+     * TwigProfilerEngine constructor.
+     * @param Twig_Environment $environment
+     * @param TwigEngine $twigEngine
+     * @param TwigDataCollector $collector
+     */
+    public function __construct(Twig_Environment $environment, TwigEngine $twigEngine, TwigDataCollector $collector)
     {
         $this->environment = $environment;
         $this->twigEngine  = $twigEngine;
@@ -27,7 +53,7 @@ class TwigProfilerEngine extends TwigEngine
 
         $loader = $this->environment->getLoader();
 
-        if ($loader instanceof \Twig_LoaderInterface) {
+        if ($loader instanceof Twig_LoaderInterface) {
             $templatePath = $loader->getCacheKey($name);
         }
         $this->collector->collectTemplateData($name, $parameters, $templatePath);

@@ -7,7 +7,10 @@ use Ambta\DoctrineEncryptBundle\Encryptors\EncryptorInterface;
 /**
  * Class Rijndael256Encryptor
  * @package Mjr\Library\ToolsBundle\Encryption
- * @author Chris Westerfield <westerfield.chris@gmail.com>
+ * @author Chris Westerfield <chris@MJR.ONE>
+ * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
+ * @copyright MJR.ONE Group
+ * @link http://www.MJR.ONE
  */
 class Rijndael256Encryptor implements EncryptorInterface
 {

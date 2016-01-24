@@ -11,17 +11,31 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
  * RedisProfilerStorage stores profiling information in Redis.
  *
  * @package Mjr\Library\ToolsBundle\Profiler
+ * @author Chris Westerfield <chris@MJR.ONE>
+ * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
+ * @copyright MJR.ONE Group
+ * @link http://www.MJR.ONE
  */
 class RedisProfilerStorage implements ProfilerStorageInterface
 {
+    /**
+     * Konstanten
+     */
     const TOKEN_PREFIX = 'sf_profiler_';
 
     const REDIS_OPT_SERIALIZER = 1;
     const REDIS_OPT_PREFIX = 2;
     const REDIS_SERIALIZER_NONE = 0;
     const REDIS_SERIALIZER_PHP = 1;
-
+    /**
+     * datenbank connection string
+     * @var string
+     */
     protected $dsn;
+    /**
+     * TTL
+     * @var int
+     */
     protected $lifetime;
 
     /**
@@ -357,6 +371,10 @@ class RedisProfilerStorage implements ProfilerStorageInterface
         return false;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     private function isItemNameValid($name)
     {
         $length = strlen($name);
