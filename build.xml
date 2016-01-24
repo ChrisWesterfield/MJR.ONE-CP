@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Test Build-->
+<project name="MJR.ONE Control Panel (MOCP)" default="build">
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build/api"/>
+        <delete dir="${basedir}/build/code-browser"/>
+        <delete dir="${basedir}/build/coverage"/>
+        <delete dir="${basedir}/build/logs"/>
+        <delete dir="${basedir}/build/pdepend"/>
+    </target>
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/api"/>
+        <mkdir dir="${basedir}/build/code-browser"/>
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+        <mkdir dir="${basedir}/build/pdepend"/>
+    </target>
+
+    <target name="parallelTasks"
+            description="Run the pdepend, phpmd, phpcpd, phpcs and phploc tasks in parallel using a maximum of 2 threads.">
+        <parallel threadCount="2">
+            <sequential>
+                <antcall target="pdepend"/>
+                <antcall target="phpmd"/>
+            </sequential>
+            <antcall target="phpcpd"/>
+            <antcall target="phpcs"/>
+            <antcall target="phploc"/>
+        </parallel>
+    </target>
+    <target name="parallelTasks"
+            description="Run the pdepend, phpmd, phpcpd, phpcs and phploc tasks in parallel using a maximum of 2 threads.">
+        <parallel threadCount="3">
+            <antcall target="phpcb"/>
+            <antcall target="phpdoc"/>
+            <antcall target="phpdox"/>
+        </parallel>
+    </target>
+    <target name="lint" description="Perform syntax check of sourcecode files">
+        <apply executable="php" failonerror="false">
+            <arg value="-l" />
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <modified />
+            </fileset>
+        </apply>
+    </target>
+    <target name="phploc" description="Measure project size using PHPLOC">
+        <exec executable="phploc">
+            <!-- exclude tests directory -->
+            <arg value="--log-csv" />
+            <arg value="${basedir}/build/logs/phploc.csv" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+    <target name="pdepend" description="Calculate software metrics using PHP_Depend">
+        <exec executable="pdepend">
+            <arg value="--ignore=${basedir}/docs" />
+            <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+            <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
+            <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+    <target name="phpmd" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+        <exec executable="phpmd">
+            <arg path="${basedir}" />
+            <arg value="xml" />
+            <arg value="codesize" />
+            <arg value="--reportfile" />
+            <arg value="${basedir}/build/logs/pmd.xml" />
+            <arg value="--exclude" />
+            <arg value="${basedir}/tests" />
+        </exec>
+    </target>
+    <target name="phpcs"
+            description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+        <exec executable="phpcs" output="/dev/null">
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+            <arg value="--standard=Zend" />
+            <arg value="--extensions=php" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+    <target name="phpcpd" description="Find duplicate code using PHPCPD">
+        <exec executable="phpcpd">
+            <arg value="--log-pmd" />
+            <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+    <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+        <exec executable="phpcb">
+            <arg value="--log" />
+            <arg path="${basedir}/build/logs" />
+            <arg value="--source" />
+            <arg path="${basedir}" />
+            <arg value="--output" />
+            <arg path="${basedir}/build/code-browser" />
+        </exec>
+    </target>
+    <target name="phpdox">
+        <delete dir="${basedir}/build/api" />
+        <exec executable="phpdox" />
+    </target>
+    <target name="phpdoc" description="Generate API documentation using phpDocumentor 2">
+        <exec dir="${basedir}" executable="phpdoc" failonerror="true">
+            <!-- excluded directories need the / at the end, else phpdoc ignores it -->
+            <arg line="--title='test title' -d . -t build/api " />
+        </exec>
+    </target>
+    <target name="phpunit" description="phpunit execute">
+        <exec executable="phpunit" failonerror="true">
+            <arg value="tests/" />
+        </exec>
+    </target>
+    <target name="csslint" description="Run the CSSLint tool on CSS files">
+        <fileset dir="${basedir}" id="cssfiles.raw">
+            <include name="**/*.css" />
+        </fileset>
+        <pathconvert pathsep=" "  property="cssfiles.clean" refid="cssfiles.raw"></pathconvert>
+        <exec executable="csslint" output="${basedir}/build/logs/csslint.xml">
+            <arg line="--warnings=box-model,floats --errors=ids,important --format=lint-xml ${cssfiles.clean}" />
+        </exec>
+    </target>
+    <target name="jshint" description="Run the JSHint tool on JavaScript files">
+        <fileset dir="${basedir}" id="jsfiles.raw">
+            <include name="**/*.js" />
+        </fileset>
+        <pathconvert pathsep=" " property="jsfiles.clean" refid="jsfiles.raw" />
+        <exec executable="jshint" output="${basedir}/build/logs/jshint.xml">
+            <arg line="--reporter=jslint ${jsfiles.clean}" />
+        </exec>
+    </target>
+</project>

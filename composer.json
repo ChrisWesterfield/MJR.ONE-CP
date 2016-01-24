@@ -57,7 +57,7 @@
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^2.7",
-	"andres-montanez/magallanes": "~1.0.1",
+	    "andres-montanez/magallanes": "~1.0.1",
         "raulfraile/ladybug-bundle": "~1.0",
         "raulfraile/ladybug-plugin-extra": "~1.0"
     },
