@@ -1,4 +1,10 @@
-cp
-==
+# MJR.ONE Control Panel
 
-A Symfony project created on January 20, 2016, 10:42 pm.
+**Copyright**: MJR.ONE
+**Link**: https://www.mjr.on
+**Author**: Chris Westerfield (chris@mjr.one)
+**Version**: 0.0.0
+
+#### Installation
+
+#### Notes
