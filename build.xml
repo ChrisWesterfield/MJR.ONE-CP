@@ -28,8 +28,8 @@
             <antcall target="phploc"/>
         </parallel>
     </target>
-    <target name="parallelTasks"
-            description="Run the pdepend, phpmd, phpcpd, phpcs and phploc tasks in parallel using a maximum of 2 threads.">
+    <target name="buildDocumentation"
+            description="Run the phpcb, phpdoc, phpdox in parallel using a maximum of 3 threads.">
         <parallel threadCount="3">
             <antcall target="phpcb"/>
             <antcall target="phpdoc"/>
