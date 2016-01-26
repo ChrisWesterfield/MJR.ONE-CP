@@ -133,4 +133,22 @@
             <arg line="--reporter=jslint ${jsfiles.clean}" />
         </exec>
     </target>
+    <target name="sonarqube" description="execute sonar runner script">
+        <exec executable="${basedir}/bin/sonar-scanner/bin/sonar-runner" dir="${basedir}"/>
+    </target>
+    <target name="sonarqube-views" description="execute sonar runner script">
+        <exec executable="${basedir}/bin/sonar-scanner/bin/sonar-runner" dir="${basedir}">
+            <arg line=" views"/>
+        </exec>
+    </target>
+    <target name="sonarqube-report" description="execute sonar runner script">
+        <exec executable="${basedir}/bin/sonar-scanner/bin/sonar-runner" dir="${basedir}">
+            <arg line=" report"/>
+        </exec>
+    </target>
+    <target name="sonarqube-devcockpit" description="execute sonar runner script">
+        <exec executable="${basedir}/bin/sonar-scanner/bin/sonar-runner" dir="${basedir}">
+            <arg line=" devcockpit"/>
+        </exec>
+    </target>
 </project>
