@@ -18,6 +18,14 @@
     abstract class ControllerAbstract extends Controller
     {
         /**
+         * get Entity Manager
+         * @return \Doctrine\Orm\EntityManager
+         */
+        public function getEm()
+        {
+            return $this->getDoctrine()->getManager();
+        }
+        /**
          * is user a user?
          * @return bool
          */
