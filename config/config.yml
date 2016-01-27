@@ -21,8 +21,8 @@ assetic:
     assets:
         frontend_css:
             inputs:
-                - %kernel.root_dir%/../src/Mjr/Theme/AdminLTEBundle/build/less/AdminLTE.less
-                - %kernel.root_dir%/../src/Mjr/Theme/AdminLTEBundle/build/less/skins/_all-skins.less
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/build/less/AdminLTE.less
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/build/less/skins/_all-skins.less
                 - %kernel.root_dir%/../var/vendor/components/font-awesome/less/font-awesome.less
             filters:
                 - lessphp
@@ -62,7 +62,7 @@ assetic:
             output: js/mopa.js
         frontend_js:
             inputs:
-                - %kernel.root_dir%/../src/Mjr/Theme/AdminLTEBundle/dist/js/app.js
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/dist/js/app.js
             output: js/app.js
         font_awesom_otf:
             inputs:
@@ -151,6 +151,16 @@ doctrine:
                 dir: "%kernel.root_dir%/../var/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                 alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
                 is_bundle: false
+            mjr_library_queue:
+                type: annotation
+                dir: "%kernel.root_dir%/../usr/Mjr/Library/QueueBundle/Entities"
+                prefix: Mjr\Library\QueueBundle\Entities\System
+                alias: MjrLibraryQueueBundle
+            mjr_library_entities:
+                type: annotation
+                dir: "%kernel.root_dir%/../usr/Mjr/Library/EntitiesBundle/Entities"
+                prefix: Mjr\Library\EntitiesBundle\Entities
+                alias: MjrLibraryEntitiesBundle
         filters:
             softdeleteable:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
@@ -196,6 +206,10 @@ mopa_bootstrap:
     menu: ~
     icons:
         icon_set: fontawesome4
+
+mjr_library_queue:
+    queue_options_defaults:
+        max_concurrent_jobs: 2
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/../var/Migrations"

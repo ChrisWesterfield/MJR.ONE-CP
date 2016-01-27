@@ -2,6 +2,8 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
+
+    #System Database
     database_driver:        pdo_mysql
     database_host:          127.0.0.1
     database_port:          ~
@@ -11,6 +13,7 @@ parameters:
     # You should uncomment this if you want use pdo_sqlite
     # database_path:        "%kernel.root_dir%/data.db3"
 
+    #Mail Handling
     mailer_transport:       smtp
     mailer_host:            127.0.0.1
     mailer_user:            ~
@@ -20,6 +23,7 @@ parameters:
     secret:                 ThisTokenIsNotSoSecretChangeIt
     encryptionsecret:       ThisTokenIsNotSoSecretChangeIt
 
+    #Cache Handling
     redis_cache:            redis://localhost:6379/0
     redis_session:          redis://localhost:6379/1
     redis_doctrine:         redis://localhost:6379/2
@@ -31,3 +35,10 @@ parameters:
     elastic_host:           localhost
     elastic_port:           9300
     elastic_index:          MjrOneCp
+
+    #Root User for MySQL Root Access
+    database_root_driver:         pdo_mysql
+    database_root_host:           127.0.0.1
+    database_root_port:           3306
+    database_root_user:           root
+    database_root_password:       ~

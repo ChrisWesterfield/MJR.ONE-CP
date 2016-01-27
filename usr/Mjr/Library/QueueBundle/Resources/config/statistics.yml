@@ -1,0 +1,8 @@
+parameters:
+    mjr_library_queue.entity.statistics_listener.class: Mjr\Library\QueueBundle\Entities\Listener\StatisticsListener
+
+services:
+    library_job_queue.entity.statistics_listener:
+        class: %mjr_library_queue.entity.statistics_listener.class%
+        tags:
+            - { name: doctrine.event_listener, lazy: true, event: postGenerateSchema }

@@ -1,0 +1,20 @@
+parameters:
+
+    mjr_library_queue.entity.many_to_any_listener.class: Mjr\Library\QueueBundle\Entities\Listener\ManyToAnyListener
+    mjr_library_queue.twig.extension.class: Mjr\Library\QueueBundle\JobQueueExtension
+
+services:
+
+    mjr_library_queue.entity.many_to_any_listener:
+        class: %mjr_library_queue.entity.many_to_any_listener.class%
+        tags:
+            - { name: doctrine.event_listener, lazy: true, event: postGenerateSchema }
+            - { name: doctrine.event_listener, lazy: true, event: postLoad }
+            - { name: doctrine.event_listener, lazy: true, event: postPersist }
+            - { name: doctrine.event_listener, lazy: true, event: preRemove }
+        arguments: ['@doctrine']
+
+    mjr_library_queue.twig.extension:
+        class: %mjr_library_queue.twig.extension.class%
+        tags:
+            - { name: twig.extension }

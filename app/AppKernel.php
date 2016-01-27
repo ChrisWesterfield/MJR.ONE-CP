@@ -34,7 +34,9 @@ use Mjr\Frontend\System\RemoteBundle\MjrFrontendSystemRemoteBundle;
 use Mjr\Frontend\System\UserBundle\MjrFrontendSystemUserBundle;
 use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
 use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
+use Mjr\Library\ControllerBundle\MjrLibraryControllerBundle;
 use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
+use Mjr\Library\QueueBundle\MjrLibraryQueueBundle;
 use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
 use Mjr\Server\BackupBundle\MjrServerBackupBundle;
 use Mjr\Server\ClientBundle\MjrServerClientBundle;
@@ -87,6 +89,8 @@ class AppKernel extends Kernel
             //Library
             new MjrLibraryToolsBundle(),
             new MjrLibraryEntitiesBundle(),
+            new MjrLibraryControllerBundle(),
+            new MjrLibraryQueueBundle(),
             //Doctrine Extensions
             new AmbtaDoctrineEncryptBundle(),
             new DoctrineMigrationsBundle(),

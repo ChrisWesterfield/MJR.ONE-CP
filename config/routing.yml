@@ -39,7 +39,7 @@ mjr_frontend_monitoring_log:
     prefix:   /
 
 mjr_frontend_monitoring_server:
-    resource: "@MjrFrontendMonitoringServerBundle/Resources/config/routing.xml"
+    resource: "@MjrFrontendMonitoringServerBundle/Controller/"
     prefix:   /
 
 mjr_frontend_monitoring_cp:
