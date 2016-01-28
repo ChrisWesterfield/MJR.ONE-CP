@@ -20,6 +20,7 @@ use Mjr\Frontend\MessageBundle\MjrFrontendMessageBundle;
 use Mjr\Frontend\Monitoring\CPBundle\MjrFrontendMonitoringCPBundle;
 use Mjr\Frontend\Monitoring\LogBundle\MjrFrontendMonitoringLogBundle;
 use Mjr\Frontend\Monitoring\ServerBundle\MjrFrontendMonitoringServerBundle;
+use Mjr\Frontend\OperationsBundle\MjrFrontendOperationsBundle;
 use Mjr\Frontend\ResellerBundle\MjrFrontendResellerBundle;
 use Mjr\Frontend\Sites\AccessBundle\MjrFrontendSitesAccessBundle;
 use Mjr\Frontend\Sites\CronBundle\MjrFrontendSitesCronBundle;
@@ -101,6 +102,7 @@ class AppKernel extends Kernel
             //Elastic Search
             new FOSElasticaBundle(),
             //Frontend
+            new MjrFrontendOperationsBundle(),
             new MjrFrontendDashboardBundle(),
             new MjrFrontendClientBundle(),
             new MjrFrontendResellerBundle(),

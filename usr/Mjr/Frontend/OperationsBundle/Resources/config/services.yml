@@ -1,0 +1,8 @@
+parameters:
+    mjr.frontend.operations.class: Mjr\Library\OperationsBundle\AuthSuccessHandler
+services:
+    mjr.frontend.operations.success_handler:
+        class: %mjr.frontend.operations.class%
+        arguments: ['@security.http_utils', '@service_container', {}]
+        tags:
+            - { name: 'monolog.logger', channel: 'security'}

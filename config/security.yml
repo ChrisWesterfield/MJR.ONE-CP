@@ -1,24 +1,60 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    access_control:
+        - { path: ^/Operations/Form,    roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/Login,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/Forgot,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/System, roles: ROLE_ADMIN }
+        - { path: ^/Monitoring, roles: ROLE_ADMIN }
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
+    encoders:
+          Symfony\Component\Security\Core\User\UserInterface:
+                algorithm: bcrypt
+                cost: 10
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+        secured_area:
+            pattern: ^/
+
+            anonymous: ~
+
+            form_login:
+                #csrf_provider: security.csrf.token_manager
+                #csrf_parameter: _token
+                login_path: /Operations/Form
+                check_path: /Operations/Login
+                always_use_default_target_path: true
+                default_target_path: /
+                username_parameter: _username
+                password_parameter: _password
+                success_handler: mjr.frontend.operations.success_handler
+
+            logout:
+                path: /Operations/Logout
+                target: /Operations/Form
+
+        default:
+            pattern: ^/
+            anonymous: ~
+            provider: mjr_auth_db
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
             anonymous: ~
-            # activate different ways to authenticate
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        mjr_auth_db:
+            entity:
+                class: Mjr\Library\EntitiesBundle\Entities\User\User
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    role_hierarchy:
+        ROLE_GUEST:
+        ROLE_USER: ROLE_GUEST
+        ROLE_ADMIN: ROLE_USER
+        ROLE_ROOT: ROLE_ADMIN
