@@ -166,7 +166,7 @@
                 'timestamp'=>$timestamp,
                 'date'=>date('m/d/Y',$timestamp),
                 'time'=>date('H:i:s',$timestamp),
-                'success'=>true,
+                'success'=>$success,
                 'payload'=>$payload
             );
         }

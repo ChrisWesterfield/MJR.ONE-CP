@@ -4,7 +4,11 @@ security:
     access_control:
         - { path: ^/Operations/Form,    roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/Operations/Login,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/Operations/Forgot,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword1,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword2,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword3,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword4,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(_(profiler|wdt))/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/, roles: ROLE_USER }
         - { path: ^/System, roles: ROLE_ADMIN }
         - { path: ^/Monitoring, roles: ROLE_ADMIN }
@@ -45,6 +49,14 @@ security:
             security: false
 
         main:
+            #remember_me:
+            #    secret: '%secret%'
+            #    lifetime: 7200
+            #    path: /
+            #    secure: true
+            #    httponly: true
+            #    remember_me_parameter: _remember_me
+            #    domain: ~
             anonymous: ~
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers

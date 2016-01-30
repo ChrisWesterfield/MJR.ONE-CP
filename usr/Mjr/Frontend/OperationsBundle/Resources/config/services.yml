@@ -1,5 +1,5 @@
 parameters:
-    mjr.frontend.operations.class: Mjr\Library\OperationsBundle\AuthSuccessHandler
+    mjr.frontend.operations.class: Mjr\Frontend\OperationsBundle\AuthSuccessHandler
 services:
     mjr.frontend.operations.success_handler:
         class: %mjr.frontend.operations.class%

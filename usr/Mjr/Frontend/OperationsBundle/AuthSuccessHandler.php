@@ -1,6 +1,6 @@
 <?php
 
-namespace Mjr\Library\OperationsBundle;
+namespace Mjr\Frontend\OperationsBundle;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Session;
 
 /**
  * Class AuthSuccessHandler
- * @package Mjr\Library\OperationsBundle
+ * @package Mjr\Frontend\OperationsBundle
  * @author Chris Westerfield <chris@MJR.ONE>
  * @license Mozilla Public License 2.0 <https://www.mozilla.org/en-US/MPL/2.0/>
  * @copyright MJR.ONE Group

@@ -37,6 +37,7 @@ use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
 use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
 use Mjr\Library\ControllerBundle\MjrLibraryControllerBundle;
 use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
+use Mjr\Library\ProfilerBundle\MjrLibraryProfilerBundle;
 use Mjr\Library\QueueBundle\MjrLibraryQueueBundle;
 use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
 use Mjr\Server\BackupBundle\MjrServerBackupBundle;
@@ -163,6 +164,7 @@ class AppKernel extends Kernel
             $bundles[] = new WebProfilerBundle();
             $bundles[] = new SensioDistributionBundle();
             $bundles[] = new SensioGeneratorBundle();
+            $bundles[] = new MjrLibraryProfilerBundle();
             MjrLibraryToolsBundle::setEnvMode();
         }
         else
