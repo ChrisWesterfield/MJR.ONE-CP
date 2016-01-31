@@ -37,6 +37,7 @@ use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
 use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
 use Mjr\Library\ControllerBundle\MjrLibraryControllerBundle;
 use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
+use Mjr\Library\NavigationBundle\MjrLibraryNavigationBundle;
 use Mjr\Library\ProfilerBundle\MjrLibraryProfilerBundle;
 use Mjr\Library\QueueBundle\MjrLibraryQueueBundle;
 use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
@@ -54,6 +55,7 @@ use Mjr\Server\ServerBundle\MjrServerServerBundle;
 use Mjr\Server\VMBundle\MjrServerVMBundle;
 use Mjr\Server\WebBundle\MjrServerWebBundle;
 use Mjr\Server\XMPPBundle\MjrServerXMPPBundle;
+use Mjr\Theme\AdminLTEBundle\MjrThemeAdminLTEBundle;
 use Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle;
 use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
@@ -93,6 +95,7 @@ class AppKernel extends Kernel
             new MjrLibraryEntitiesBundle(),
             new MjrLibraryControllerBundle(),
             new MjrLibraryQueueBundle(),
+            new MjrLibraryNavigationBundle(),
             //Doctrine Extensions
             new AmbtaDoctrineEncryptBundle(),
             new DoctrineMigrationsBundle(),
@@ -134,7 +137,7 @@ class AppKernel extends Kernel
             new MjrFrontendSystemRemoteBundle(),
             new MjrFrontendSystemAPSBundle(),
             //themes
-            new Mjr\Theme\AdminLTEBundle\MjrThemeAdminLTEBundle(),
+            new MjrThemeAdminLTEBundle(),
         ];
 
         //Console Application

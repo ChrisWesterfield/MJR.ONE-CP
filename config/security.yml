@@ -65,8 +65,35 @@ security:
             entity:
                 class: Mjr\Library\EntitiesBundle\Entities\User\User
 
+    ############################
+    # ROLES                    #
+    ############################
     role_hierarchy:
+        #ROLE GUEST
         ROLE_GUEST:
+        #GENERAL LOGIN CAPABAL
         ROLE_USER: ROLE_GUEST
-        ROLE_ADMIN: ROLE_USER
+        ############################
+        #Operational Roles         #
+        ############################
+        #ROLE MAIL SERVICES
+        ROLE_EMAIL: ROLE_USER
+        #ROLE FTP Services
+        ROLE_FILE: ROLE_USER
+        #ROLE WEBSITE Customer
+        ROLE_WEBSITE: ROLE_EMAIL, ROLE_FILE, ROLE_USER
+        #ROLE RESELLER
+        ROLE_RESELLER: ROLE_WEBSITE
+        ############################
+        #ADMINISTRATION            #
+        ############################
+        #STAFF
+        ROLE_STAFF: ROLE_WEBSITE
+        #SUPPORTER
+        ROLE_SUPPORT: ROLE_STAFF
+        #BILLING
+        ROLE_BILLING: ROLE_STAFF
+        #Administrators
+        ROLE_ADMIN: ROLE_USER, ROLE_STAFF, ROLE_SUPPORT, ROLE_BILLING
+        #ROOT USER
         ROLE_ROOT: ROLE_ADMIN
