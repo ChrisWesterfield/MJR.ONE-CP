@@ -59,7 +59,8 @@
         "symfony/phpunit-bridge": "^2.7",
 	    "andres-montanez/magallanes": "~1.0.1",
         "raulfraile/ladybug-bundle": "~1.0",
-        "raulfraile/ladybug-plugin-extra": "~1.0"
+        "raulfraile/ladybug-plugin-extra": "~1.0",
+        "lox/xhprof": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

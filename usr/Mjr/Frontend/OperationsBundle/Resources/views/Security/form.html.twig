@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AdminLTE 2 | Log in</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+        <!-- iCheck -->
+        <link rel="stylesheet" href="{{ asset('bundles/mjrthemeadminlte/iCheck/square/blue.css') }}">
+        <style>
+            .page-wrapper
+            {
+                position:absolute;
+                top:0px;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                background-color: black;
+                background-image: url({{ asset('bundles/mjrthemeadminlte/images/login.png') }});
+                background-repeat: no-repeat;
+                background-size:contains;
+            }
+            .login-box-body
+            {
+                border-radius: 35px;
+                background-color: #ccc;
+                border-color: black;
+            }
+            .login-logo
+            {
+                border-radius: 35px;
+                background-color: white;
+                border-color: black;
+            }
+        </style>
+    </head>
+    <body class="">
+        <div class="page-wrapper">
+            <div class="hold-transition login-page " style="background: transparent!important;">
+                <div class="login-box">
+                    <div class="login-logo">
+                        <img src="{{ asset(SystemProjectLogoLarge) }}" class="hidden-sm hidden-xs" style="max-height: 100px;">
+                        <img src="{{ asset(SystemProjectLogoSmall) }}" class="hidden-md hidden-lg">
+                        <br>
+                        {{ SystemProjectName }}
+                    </div>
+                    <!-- /.login-logo -->
+                    <div class="login-box-body">
+                        <p class="login-box-msg">{% trans %}Sign in to start your session{% endtrans %}</p>
+
+                        <form action="{{ path('frontend_operations_login') }}" method="post">
+                            <div class="form-group has-feedback">
+                                <input type="email" name="_username" class="form-control" placeholder="{% trans %}Email{% endtrans %}">
+                                <span class="fa fa-envelope-o form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" name="_password" class="form-control" placeholder="{% trans %}Password{% endtrans %}">
+                                <span class="fa fa-lock form-control-feedback"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    {#
+                                        <div class="checkbox icheck">
+                                            <label>
+                                                <input type="checkbox">{% trans %}Remember Me{% endtrans %}
+                                            </label>
+                                        </div>
+                                    #}
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-xs-4">
+                                    <button type="submit" class="btn btn-success btn-block btn-flat">{% trans %}Sign In{% endtrans %}</button>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                        </form>
+
+                        <a href="{{ path('frontend_operations_password1') }}">
+                            {% trans %}I forgot my password{% endtrans %}
+                        </a>
+
+                    </div>
+                    <!-- /.login-box-body -->
+                </div>
+                <!-- /.login-box -->
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <!-- Bootstrap  -->
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        <!-- Mopa -->
+        <script src="{{ asset('js/mopa.js') }}"></script>
+        <!-- Moment -->
+        <script src="{{ asset('js/moment.js') }}"></script>
+        <!-- APP JS -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <!-- iCheck -->
+        <script src="{{ asset('bundles/mjrthemeadminlte/iCheck/icheck.min.js') }}"></script>
+        <script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                });
+            });
+        </script>
+    </body>
+</html>

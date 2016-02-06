@@ -1,3 +1,8 @@
+mjr_frontend_operations:
+    resource: "@MjrFrontendOperationsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mjr_frontend_system_aps:
     resource: "@MjrFrontendSystemAPSBundle/Controller/"
     type:     annotation

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Sign in to start your session</source>
+                <target>Bitte melden Sie sich an!</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Email</source>
+                <target>Email Adresse</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Sign In</source>
+                <target>Anmelden!</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>I forgot my password</source>
+                <target>Passwort zurück setzen</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="0">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <!--
+            Master Template for 10 Entries Block
+            <trans-unit id="1">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="0">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            -->
+        </body>
+    </file>
+</xliff>
