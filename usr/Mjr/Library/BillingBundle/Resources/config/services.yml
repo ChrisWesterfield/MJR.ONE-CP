@@ -1,0 +1,4 @@
+services:
+#    mjr_library_billing.example:
+#        class: Mjr\Library\BillingBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

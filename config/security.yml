@@ -63,7 +63,7 @@ security:
     providers:
         mjr_auth_db:
             entity:
-                class: Mjr\Library\EntitiesBundle\Entities\User\User
+                class: Mjr\Library\EntitiesBundle\Entity\User\User
 
     ############################
     # ROLES                    #

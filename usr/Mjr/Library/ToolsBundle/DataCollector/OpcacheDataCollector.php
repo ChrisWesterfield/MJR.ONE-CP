@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class OpcacheDataCollector
  *
  * @package OmegaDev\LibraryBundle
- * @author Chris Westerfield <westerfield.chris@gmail.com>
+ * @author Chris Westerfield <chris@mjr.one>
  */
 class OpcacheDataCollector extends DataCollector
 {

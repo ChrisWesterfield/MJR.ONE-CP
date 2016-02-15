@@ -1,0 +1,112 @@
+<li class="treeview {% if subtree_navigation is defined and subtree_navigation == 'system' %}active{% endif %}">
+    <a href="#">
+        <i class="fa fa-desktop"></i>
+        {% trans %}System Administration{% endtrans %}
+        <i class="fa fa-angle-left pull-right"></i>
+    </a>
+    <ul class="treeview-menu">
+        <li class="treeview{% if subtree_entry is defined and subtree_entry == 'server' %} active{% endif %}">
+            <a href="#">
+                <i class="fa fa-server"></i>
+                {% trans %}Server{% endtrans %}
+                <i class="fa fa-angle-left pull-right"></i>
+                <ul class="treeview-menu">
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_config_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_config_list') }}">
+                            <i class="fa fa-list-alt"></i>
+                            {% trans %}Server Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_ipaddressmapping_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_ipaddress_list') }}">
+                            <i class="fa fa-map-marker"></i>
+                            {% trans %}Server IP{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_ipaddress_create' %} active{% endif %}">
+                        <a href="{{ path('system_system_ipaddress_create') }}">
+                            <i class="fa fa-plus"></i>
+                            {% trans %}create Server IP{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_ipaddressmapping_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_ipaddressmapping_list') }}">
+                            <i class="fa fa-location-arrow"></i>
+                            {% trans %}Server IP Mapping{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_ipaddressmapping_create' %} active{% endif %}">
+                        <a href="{{ path('system_system_ipaddressmapping_create') }}">
+                            <i class="fa fa-plus"></i>
+                            {% trans %}create Server IP Mapping{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_services_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_services_list') }}">
+                            <i class="fa fa-flask"></i>
+                            {% trans %}Services Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_phpversion_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_phpversion_list') }}">
+                            <i class="fa fa-language"></i>
+                            {% trans %}PHP Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_phpversion_create' %} active{% endif %}">
+                        <a href="{{ path('system_system_phpversion_create') }}">
+                            <i class="fa fa-plus"></i>
+                            {% trans %}create PHP Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_snippets_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_snippets_list') }}">
+                            <i class="fa fa-list-ul"></i>
+                            {% trans %}Snippets List{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_snippets_create' %} active{% endif %}">
+                        <a href="{{ path('system_system_snippets_create') }}">
+                            <i class="fa fa-plus"></i>
+                            {% trans %}create PHP Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_firewall_list' %} active{% endif %}">
+                        <a href="{{ path('system_system_firewall_list') }}">
+                            <i class="fa fa-list-ul"></i>
+                            {% trans %}Firewall Config{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_firewall_create' %} active{% endif %}">
+                        <a href="{{ path('system_system_firewall_create') }}">
+                            <i class="fa fa-plus"></i>
+                            {% trans %}create Firewall Config{% endtrans %}
+                        </a>
+                    </li>
+                </ul>
+            </a>
+        </li>
+        <li><hr></li>
+        <li class="{% if subtree_menu is defined and subtree_menu == 'system_system_interface' %} active{% endif %}">
+            <a href="{{ path('system_system_interface') }}">
+                <i class="fa fa-tachometer"></i>
+                {% trans %}Control Panel Config{% endtrans %}
+            </a>
+        </li>
+        {% if(bundleExists('MjrFrontendSystemUserBundle')) %}
+            {% include "MjrFrontendSystemUserBundle:Base:Navigation.html.twig" %}
+        {% endif %}
+        {% if(bundleExists('MjrFrontendSystemAPSBundle')) %}
+            {% include "MjrFrontendSystemAPSBundle:Base:Navigation.html.twig" %}
+        {% endif %}
+        {% if(bundleExists('MjrFrontendSystemRemoteBundle')) %}
+            {% include "MjrFrontendSystemRemoteBundle:Base:Navigation.html.twig" %}
+        {% endif %}
+    </ul>
+</li>

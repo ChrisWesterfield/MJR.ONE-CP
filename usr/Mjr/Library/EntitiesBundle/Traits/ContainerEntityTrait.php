@@ -1,7 +1,7 @@
 <?php
 
 
-    namespace Mjr\Library\EntitiesBundle\Library\Traits;
+    namespace Mjr\Library\EntitiesBundle\Traits;
     use Symfony\Component\DependencyInjection\ContainerInterface;
 
     /**
@@ -10,7 +10,7 @@
      * @package Mjr\Library\EntitiesBundle\Traits
      * @trait
      * @package OmegaDev\LibraryBundle\Entity
-     * @author Chris Westerfield <westerfield.chris@gmail.com>
+     * @author Chris Westerfield <chris@mjr.one>
      */
     trait ContainerEntityTrait
     {

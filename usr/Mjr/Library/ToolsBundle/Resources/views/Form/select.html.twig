@@ -1,0 +1,23 @@
+
+<div class="form-group">
+    <label for="{% if id is not defined %}{{ name }}{% else %}{{ id }}{% endif %}" class="col-lg-1 col-sm-2 control-label">{{ text|trans }}</label>
+    <div class="col-sm-10 col-lg-11">
+        <select
+            name="{{ name }}"
+            class="form-control"
+            id="{% if id is not defined %}{{ name }}{% else %}{{ id }}{% endif %}"
+            >
+            {% if value is defined and value|length > 0 %}
+                {% for entry in value %}
+                    {% if entry.type == "ogo" %}
+                        <optgroup label="{{ entry.text }}">
+                    {% elseif entry.type == "ogc" %}
+                        </optgroup>
+                    {% else %}
+                        <option value="{{ entry.value }}" {% if checked is defined and value == entry.value %}selected{% endif %}>{{ entry.text }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+</div>

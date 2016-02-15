@@ -3,15 +3,15 @@
     namespace Mjr\Library\EntitiesBundle\Traits;
     use Doctrine\ORM\Mapping as ORM;
     use Gedmo\Mapping\Annotation as Gedmo;
-    use Mjr\Library\EntitiesBundle\Entities\User\User;
+    use Mjr\Library\EntitiesBundle\Entity\User\User;
 
     /**
      * Class LogableTrait
      *
      * @package Mjr\Library\EntitiesBundle\Traits
      * @trait
-     * @package OmegaDev\LibraryBundle\Entity
-     * @author Chris Westerfield <westerfield.chris@gmail.com>
+     * @package Mjr\Library\EntitiesBundle\Traits
+     * @author Chris Westerfield <chris@mjr.one>
      */
     trait LogableTrait
     {
@@ -19,7 +19,7 @@
         /**
          * @var User
          * @Gedmo\Blameable(on="create")
-         * @ORM\ManyToOne(targetEntity="OmegaDev\LibraryBundle\Entity\User")
+         * @ORM\ManyToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\User\User", fetch="EXTRA_LAZY")
          * @ORM\JoinColumn(name="log_created_by", referencedColumnName="id")
          */
         protected $CreatedBy;
@@ -27,7 +27,7 @@
         /**
          * @var User
          * @Gedmo\Blameable(on="update")
-         * @ORM\ManyToOne(targetEntity="OmegaDev\LibraryBundle\Entity\User")
+         * @ORM\ManyToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\User\User", fetch="EXTRA_LAZY")
          * @ORM\JoinColumn(name="log_updated_by", referencedColumnName="id")
          */
         protected $UpdatedBy;

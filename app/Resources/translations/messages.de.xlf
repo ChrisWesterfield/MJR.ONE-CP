@@ -23,22 +23,422 @@
                 <target>Passwort zurück setzen</target>
             </trans-unit>
             <trans-unit id="6">
-                <source></source>
-                <target></target>
+                <source>Search...</source>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="7">
-                <source></source>
-                <target></target>
+                <source>create</source>
+                <target>anlegen</target>
             </trans-unit>
             <trans-unit id="8">
-                <source></source>
-                <target></target>
+                <source>rename</source>
+                <target>umbenennen</target>
             </trans-unit>
             <trans-unit id="9">
-                <source></source>
-                <target></target>
+                <source>delete</source>
+                <target>löschen</target>
             </trans-unit>
-            <trans-unit id="0">
+            <trans-unit id="10">
+                <source>edit</source>
+                <target>bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Navigation</source>
+                <target>Navigation</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>System Administration</source>
+                <target>System Verwaltung</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Server</source>
+                <target>Server</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Server Config</source>
+                <target>Server Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Server IP</source>
+                <target>Server IP</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>create Server IP</source>
+                <target>neue IP anlegen</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Server IP Mapping</source>
+                <target>IP Mapping</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>create Server IP Mapping</source>
+                <target>neues IP Mapping anlegen</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Services Config</source>
+                <target>Dienst Verwaltung</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>PHP Config</source>
+                <target>PHP Version</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>create PHP Config</source>
+                <target>neue PHP Version anlegen</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Snippets List</source>
+                <target>Konfigurations Vorlagen</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Firewall Config</source>
+                <target>Firewall</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>create Firewall Config</source>
+                <target>neue Firewall Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Control Panel Config</source>
+                <target>GUI Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Sites</source>
+                <target>Web Seiten Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Accounts</source>
+                <target>Konten Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Mail</source>
+                <target>Email Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>DNS</source>
+                <target>DNS Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Domains</source>
+                <target>Domainen Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Misc</source>
+                <target>verschiedenes</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>External API</source>
+                <target>Externe API</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>phpMyAdmin Settings</source>
+                <target>phpMyAdmin Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>show phpMyAdmin in List</source>
+                <target>phpMyAdmin in der Datenbank Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>show phpMyAdmin in Website</source>
+                <target>phpMyAdmin im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>phpMyAdminUrl</source>
+                <target>phpMyAdmin Url</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>phpPgAdmin Settings</source>
+                <target>phpPgAdmin Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>show phpPgAdmin in List</source>
+                <target>phpPgAdmin in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>show phpPgAdmin in Websit</source>
+                <target>phpPgAdmin im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>phpPgAdminUrl</source>
+                <target>phpPgAdmin Url</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>webFTP Settings</source>
+                <target>WebFTP Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>show WebFTP in List</source>
+                <target>WebFTP in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>show WebFTP in Website</source>
+                <target>WebFTP im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>webFTPUrl</source>
+                <target>WebFTP Url</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>MongoDbAdmin Settings</source>
+                <target>MongoDBAdmin Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>show MongoDb in List</source>
+                <target>MongoDbAdmin in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>show MongoDb in Website</source>
+                <target>MongoDbAdmin im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>MongoDbUrl</source>
+                <target>MongoDbAdmin Url</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>phpRedisAdmin Settings</source>
+                <target>phpRedisAdmin Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>show Redis CP in List</source>
+                <target>phpRedisAdmin in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>show Redis CP in Website</source>
+                <target>phpRedisAdmin im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>Redis CP Url</source>
+                <target>phpRedisAdmin Url</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Site Settings</source>
+                <target>Seiten Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>create Subdomain as Web Site</source>
+                <target>Subdomain als Webseite anlegen</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>create Alias Domain as Web Site</source>
+                <target>Alias als Webseite anlegen</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>include Backip Files into Web Quota</source>
+                <target>Backup Dateien zum Web Quota hin zu rechnen</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Reseller can use Option Tab for Sites</source>
+                <target>Reseller können Optionen Tab verwenden</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>Default Settings</source>
+                <target>Standart Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>defaultWebServer</source>
+                <target>Standart Web Server</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>defaultMySQLServer</source>
+                <target>Standart MySQL Server</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>defaultPgSQLServer</source>
+                <target>Standart PgSQL Server</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>defaultMongoDbServer</source>
+                <target>Standart MongoDb Server</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>defaultRedisServer</source>
+                <target>Standart Redis Server</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>Database Prefix</source>
+                <target>Datenbank Prefix</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>Database Username Prefix</source>
+                <target>Standart Username Prefix</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>FTP User Prefix</source>
+                <target>FTP User Prefix</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>Shell User Prefix</source>
+                <target>Shell User Prefix</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>WebDave User Prefix</source>
+                <target>WebDav User Prefix</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>Account Settings</source>
+                <target>Konten Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>MailCustomLogin</source>
+                <target>Abweichende Benutzer Namen erlauben</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>AutoRespondInDetails</source>
+                <target>Autoresponder Konfiguration in Konten Details erlauben</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>CustomMailFilterInDetails</source>
+                <target>Eigene Filter im Konten Details erlauben</target>
+            </trans-unit>
+            <trans-unit id="73">
+                <source>Webmail</source>
+                <target>Webmail Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>WebmailInList</source>
+                <target>Webmail in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>WebmailInSite</source>
+                <target>Webmail im Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>WebmailUrl</source>
+                <target>Webmail Url</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>Mailling List</source>
+                <target>Mailling Listen Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>MailingInList</source>
+                <target>Mailling Listen Admin in Liste anzeigen</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>MaillingListUrl</source>
+                <target>Mailling Liten Url</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>Admin</source>
+                <target>Admin Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>AdminEmail</source>
+                <target>Admin Email</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>AdminName</source>
+                <target>Admin Name</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>SMTP Sending</source>
+                <target>SMTP Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="84">
+                <source>SMTPHost</source>
+                <target>Host</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>SMTPPort</source>
+                <target>Port</target>
+            </trans-unit>
+            <trans-unit id="86">
+                <source>SMTPUser</source>
+                <target>User</target>
+            </trans-unit>
+            <trans-unit id="87">
+                <source>SMTPPassword</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="88">
+                <source>SMTPSSL</source>
+                <target>SSL Verschlüsselung</target>
+            </trans-unit>
+            <trans-unit id="89">
+                <source>defaultMailServer</source>
+                <target>Standart Mail Server</target>
+            </trans-unit>
+            <trans-unit id="90">
+                <source>default1DnsServer</source>
+                <target>1. DNS Server</target>
+            </trans-unit>
+            <trans-unit id="91">
+                <source>default2DnsServer</source>
+                <target>2. DNS Server</target>
+            </trans-unit>
+            <trans-unit id="92">
+                <source>default3DnsServer</source>
+                <target>3. DNS Server</target>
+            </trans-unit>
+            <trans-unit id="93">
+                <source>default4DnsServer</source>
+                <target>4. DNS Server</target>
+            </trans-unit>
+            <trans-unit id="94">
+                <source>UserDomainRegistry</source>
+                <target>User Domain Registry verwenden</target>
+            </trans-unit>
+            <trans-unit id="95">
+                <source>RegisterDomainHtml</source>
+                <target>HTML Text zum Anlegen einer neuen Domain</target>
+            </trans-unit>
+            <trans-unit id="96">
+                <source>CompanyName</source>
+                <target>Name der Firma</target>
+            </trans-unit>
+            <trans-unit id="97">
+                <source>CustomTextLoginPage</source>
+                <target>Individueller Text für Login Seite</target>
+            </trans-unit>
+            <trans-unit id="98">
+                <source>CustomLinkLoginPage</source>
+                <target>Individueller Link für die Text Seite</target>
+            </trans-unit>
+            <trans-unit id="99">
+                <source>DashboardAtomAdmin</source>
+                <target>Atom Feed für Admin Dashboard</target>
+            </trans-unit>
+            <trans-unit id="100">
+                <source>DashboardAtomReseller</source>
+                <target>Atom Feed für Reseller Dashboard</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>useLoadIndicator</source>
+                <target>Seiten Lade Indikator verwenden</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>CustNoTemplate</source>
+                <target>Kunden Number Template</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>CustomerNumberStart</source>
+                <target>Kundennummer Start Zähler</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>CustomerNumberCounter</source>
+                <target>Stand der Kundennummer</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>MinPasswordLength</source>
+                <target>Mindest Länge der Kennwörter</target>
+            </trans-unit>
+            <trans-unit id="106">
+                <source>MinPasswordStrength</source>
+                <target>Mindest Komplexität des Kennworts</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>MaintenanceMode</source>
+                <target>Wartungs Modus</target>
+            </trans-unit>
+            <trans-unit id="108">
+                <source>save changes</source>
+                <target>Änderungen speichern</target>
+            </trans-unit>
+            <trans-unit id="109">
+                <source>cancle</source>
+                <target>Abbrechen</target>
+            </trans-unit>
+            <trans-unit id="110">
                 <source></source>
                 <target></target>
             </trans-unit>
