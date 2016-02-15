@@ -10,7 +10,7 @@
      *
      * @package Mjr\Library\EntitiesBundle\Traits
      * @trait
-     * @author Chris Westerfield <westerfield.chris@gmail.com>
+     * @author Chris Westerfield <chris@mjr.one>
      */
     trait SortableRepositoryTrait
     {

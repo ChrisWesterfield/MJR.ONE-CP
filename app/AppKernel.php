@@ -35,9 +35,11 @@ use Mjr\Frontend\System\RemoteBundle\MjrFrontendSystemRemoteBundle;
 use Mjr\Frontend\System\UserBundle\MjrFrontendSystemUserBundle;
 use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
 use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
+use Mjr\Installer\InstallBundle\MjrInstallerInstallBundle;
+use Mjr\Library\BillingBundle\MjrLibraryBillingBundle;
 use Mjr\Library\ControllerBundle\MjrLibraryControllerBundle;
 use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
-use Mjr\Library\NavigationBundle\MjrLibraryNavigationBundle;
+use Mjr\Library\ErrbitBundle\MjrLibraryErrbitBundle;
 use Mjr\Library\ProfilerBundle\MjrLibraryProfilerBundle;
 use Mjr\Library\QueueBundle\MjrLibraryQueueBundle;
 use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
@@ -52,6 +54,7 @@ use Mjr\Server\MonitorBundle\MjrServerMonitorBundle;
 use Mjr\Server\RemoteBundle\MjrServerRemoteBundle;
 use Mjr\Server\RescueBundle\MjrServerRescueBundle;
 use Mjr\Server\ServerBundle\MjrServerServerBundle;
+use Mjr\Server\SupportBundle\MjrServerSupportBundle;
 use Mjr\Server\VMBundle\MjrServerVMBundle;
 use Mjr\Server\WebBundle\MjrServerWebBundle;
 use Mjr\Server\XMPPBundle\MjrServerXMPPBundle;
@@ -91,11 +94,11 @@ class AppKernel extends Kernel
             //Asstic
             new AsseticBundle(),
             //Library
+            new MjrLibraryErrbitBundle(),
             new MjrLibraryToolsBundle(),
             new MjrLibraryEntitiesBundle(),
             new MjrLibraryControllerBundle(),
-            new MjrLibraryQueueBundle(),
-            new MjrLibraryNavigationBundle(),
+            new MjrLibraryBillingBundle(),
             //Doctrine Extensions
             new AmbtaDoctrineEncryptBundle(),
             new DoctrineMigrationsBundle(),
@@ -144,22 +147,44 @@ class AppKernel extends Kernel
         if($this->getEnvironment()=='console')
         {
             $consoleBundles = array(
+                //Client Related Tasks
                 new MjrServerClientBundle(),
+                //Cron Related Tasks
                 new MjrServerCronBundle(),
+                //Mysql, PgSQL, MongoDB related Tasks
                 new MjrServerDatabaseBundle(),
+                //Dns (mainly bind) related tasks
                 new MjrServerDnsBundle(),
+                //Mail Server Related Tasks
                 new MjrServerMailBundle(),
+                //Monitoring Bundle
                 new MjrServerMonitorBundle(),
+                //Remote Bundle
                 new MjrServerRemoteBundle(),
+                //Rescue Bundle
                 new MjrServerRescueBundle(),
+                //Server Config Related Bundle
                 new MjrServerServerBundle(),
+                //Virtual Machine Bundle
                 new MjrServerVMBundle(),
+                //Web Server Related Bundle
                 new MjrServerWebBundle(),
+                //XMPP Related Bundle
                 new MjrServerXMPPBundle(),
+                //Backup Routines
                 new MjrServerBackupBundle(),
-                new MjrServerInstallBundle(),
+                //Support Tasks Related Bundle
+                new MjrServerSupportBundle(),
             );
             $bundles = array_merge($bundles,$consoleBundles);
+        }
+
+        if($this->getEnvironment()=='installer')
+        {
+            $installer = array(
+                new MjrInstallerInstallBundle()
+            );
+            $bundles = array_merge($bundles,$installer);
         }
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

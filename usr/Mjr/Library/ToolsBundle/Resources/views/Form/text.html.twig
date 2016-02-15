@@ -1,0 +1,16 @@
+
+<div class="form-group">
+    <label for="{% if id is not defined %}{{ name }}{% else %}{{ id }}{% endif %}" class="col-lg-1 col-sm-2 control-label">{{ text|trans }}</label>
+    <div class="col-sm-10 col-lg-11">
+        <input
+            type="{% if iType is defined %}{{ type }}{% else %}text{% endif %}"
+            name="{{ name }}"
+            class="form-control"
+            id="{% if id is not defined %}{{ name }}{% else %}{{ id }}{% endif %}"
+            placeholder="{% if placeholderraw is defined %}{{ placeholderraw }}{% else %}{% if placeholder is defined %}{{ placeholder|trans }}{% else %}{{ text|trans }}{% endif %}{% endif %}"
+            {% if value is defined %}
+                value="{{ value }}"
+            {% endif %}
+        >
+    </div>
+</div>

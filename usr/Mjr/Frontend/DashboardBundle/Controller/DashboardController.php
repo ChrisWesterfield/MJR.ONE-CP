@@ -24,7 +24,7 @@ class DashboardController extends ControllerAbstract
     {
         $this->isUser();
         return array(
-            // ...
+            'currentNavigation'=>'homepage_controller',
         );
     }
 

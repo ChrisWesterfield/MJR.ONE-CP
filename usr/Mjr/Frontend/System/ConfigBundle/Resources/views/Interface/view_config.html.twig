@@ -1,0 +1,177 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Control Panel Config{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ asset('bundles/mjrthemeadminlte/iCheck/square/blue.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/mjrthemeadminlte/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+{% endblock %}
+
+{% block javascriptsLoader %}
+    {{ parent() }}
+    <!-- iCheck -->
+    <script src="{{ asset('bundles/mjrthemeadminlte/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('bundles/mjrthemeadminlte/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+{% endblock %}
+
+{% block javascriptsOnLoad %}
+    {{ parent() }}
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+    });
+    $('#RegisterDomainHtml').wysihtml5(
+        {
+            toolbar: {
+                "fa": true
+            }
+        }
+    );
+{% endblock %}
+
+{% block body %}
+    <form role="form" class="form-horizontal" method="post" action="{{ path('system_system_interface_save') }}">
+        <fieldset>
+            <legend>{% trans %}Control Panel Config{% endtrans %}</legend>
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab_1" data-toggle="tab">
+                            {% trans %}Sites{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_2" data-toggle="tab">
+                            {% trans %}Accounts{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_3" data-toggle="tab">
+                            {% trans %}Mail{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_4" data-toggle="tab">
+                            {% trans %}DNS{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_5" data-toggle="tab">
+                            {% trans %}Domains{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_6" data-toggle="tab">
+                            {% trans %}Misc{% endtrans %}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#tab_7" data-toggle="tab">
+                            {% trans %}External API{% endtrans %}
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab_1">
+                        <h4>{% trans %}phpMyAdmin Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagpmaEnabledList ,'name':'FlagpmaEnabledList','value':'1','text':'show phpMyAdmin in List'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagpmaEnabledSite ,'name':'FlagpmaEnabledSite','value':'1','text':'show phpMyAdmin in Website'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.pmaUrl ,'name':'pmaUrl','text':'phpMyAdminUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}phpPgAdmin Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagpgaEnabledList ,'name':'FlagpgaEnabledList','value':'1','text':'show phpPgAdmin in List'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagpgaEnabledSite ,'name':'FlagpgaEnabledSite','value':'1','text':'show phpPgAdmin in Websit'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.pgaUrl ,'name':'pgaUrl','text':'phpPgAdminUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}webFTP Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagwftpEnabledList ,'name':'FlagwftpEnabledList','value':'1','text':'show WebFTP in List'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagwftpEnabledSite ,'name':'FlagwftpEnabledSite','value':'1','text':'show WebFTP in Website'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.wftpUrl ,'name':'wftpUrl','text':'webFTPUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}MongoDbAdmin Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagmdaEnabledList ,'name':'FlagmdaEnabledList','value':'1','text':'show MongoDb in List'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagmdaEnabledSite ,'name':'FlagmdaEnabledSite','value':'1','text':'show MongoDb in Website'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.mdaUrl ,'name':'mdaUrl','text':'MongoDbUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}phpRedisAdmin Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagrcpEnabledList ,'name':'FlagrcpEnabledList','value':'1','text':'show Redis CP in List'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagrcpEnabledSite ,'name':'FlagrcpEnabledSite','value':'1','text':'show Redis CP in Website'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.rcpUrl ,'name':'rcpUrl','text':'Redis CP Url','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}Site Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagCreateSubdomainSite ,'name':'FlagCreateSubdomainSite','value':'1','text':'create Subdomain as Web Site'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagCreateAliasSite ,'name':'FlagCreateAliasSite','value':'1','text':'create Alias Domain as Web Site'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagBackupFileQuota ,'name':'FlagBackupFileQuota','value':'1','text':'include Backip Files into Web Quota'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagResellerSiteOption ,'name':'FlagResellerSiteOption','value':'1','text':'Reseller can use Option Tab for Sites'} %}
+                        <h4>{% trans %}Default Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultWebServer ,'name': 'defaultWebServer', 'text': 'defaultWebServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultMySQLServer ,'name': 'defaultMySQLServer', 'text': 'defaultMySQLServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultPgSQLServer ,'name': 'defaultPgSQLServer', 'text': 'defaultPgSQLServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultMongoDbServer ,'name': 'defaultMongoDbServer', 'text': 'defaultMongoDbServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultRedisServer ,'name': 'defaultRedisServer', 'text': 'defaultRedisServer'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.DataBasePrefix ,'name':'DataBasePrefix','text':'Database Prefix','placeholderraw':'d[CLIENTID]'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.DatabaseUserNamePRefix ,'name':'DatabaseUserNamePRefix','text':'Database Username Prefix','placeholderraw':'du[CLIENTID]'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.FTPUserPRefix ,'name':'FTPUserPRefix','text':'FTP User Prefix','placeholderraw':'f[CLIENTID]'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.ShellUserPrefix ,'name':'ShellUserPrefix','text':'Shell User Prefix','placeholderraw':'s[CLIENTID]'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.WebDavPrefix ,'name':'WebDavPrefix','text':'WebDave User Prefix','placeholderraw':'w[CLIENTID]'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_3">
+                        <h4>{% trans %}Account Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagMailCustomLogin ,'name':'FlagMailCustomLogin','value':'1','text':'MailCustomLogin'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagAccountAutoRespondDetails ,'name':'FlagAccountAutoRespondDetails','value':'1','text':'AutoRespondInDetails'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagCustomMailFilterInDetails ,'name':'FlagCustomMailFilterInDetails','value':'1','text':'CustomMailFilterInDetails'} %}
+                        <h4>{% trans %}Webmail{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagwmaEnabledList ,'name':'FlagwmaEnabledList','value':'1','text':'WebmailInList'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagwmaEnabledSite ,'name':'FlagwmaEnabledSite','value':'1','text':'WebmailInSite'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.wmaUrl ,'name':'wmaUrl','text':'WebmailUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}Mailling List{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagMLinList ,'name':'FlagMLinList','value':'1','text':'MailingInList'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'value': settings.MLUrl ,'name':'MLUrl','value':'1','text':'MaillingListUrl','placeholderraw':'https://<URL>'} %}
+                        <h4>{% trans %}Admin{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SystemAdminEmail ,'name':'SystemAdminEmail','text':'AdminEmail'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SystemAdminName ,'name':'SystemAdminName','text':'AdminName'} %}
+                        <h4>{% trans %}SMTP Sending{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SMTPHost ,'name':'SMTPHost','text':'SMTPHost'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SMTPPort ,'name':'SMTPPort','text':'SMTPPort'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SMTPUser ,'name':'SMTPUser','text':'SMTPUser'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.SMTPPassword ,'name':'SMTPPassword','text':'SMTPPassword', 'type':'password'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.SMTPSSL ,'name': 'SMTPSSL', 'text': 'SMTPSSL'} %}
+                        <h4>{% trans %}Default Settings{% endtrans %}</h4>
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.defaultMailServer ,'name': 'defaultMailServer', 'text': 'defaultMailServer'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_4">
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.default1DnsServer ,'name': 'default1DnsServer', 'text': 'default1DnsServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.default2DnsServer ,'name': 'default2DnsServer', 'text': 'default2DnsServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.default3DnsServer ,'name': 'default3DnsServer', 'text': 'default3DnsServer'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.default4DnsServer ,'name': 'default4DnsServer', 'text': 'default4DnsServer'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_5">
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagUserDomainRegistry ,'name':'FlagUserDomainRegistry','value':'1','text':'UserDomainRegistry'} %}
+                        {% include "MjrLibraryToolsBundle:Form:wysiwyg.html.twig" with {'value': settings.RegisterDomainHtml ,'name':'RegisterDomainHtml','text':'RegisterDomainHtml'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_6">
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CompanyName ,'name':'CompanyName','text':'CompanyName'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CustomTextLoginPage ,'name':'CustomTextLoginPage','text':'CustomTextLoginPage'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CustomLinkLoginPage ,'name':'CustomLinkLoginPage','text':'CustomLinkLoginPage'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.DashboardAtomAdmin ,'name':'DashboardAtomAdmin','text':'DashboardAtomAdmin'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.DashboardAtomReseller ,'name':'DashboardAtomReseller','text':'DashboardAtomReseller'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlaguseLoadIndicator ,'name':'FlaguseLoadIndicator','value':'1','text':'useLoadIndicator'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CustNoTemplate ,'name':'CustNoTemplate','text':'CustNoTemplate','placeholderraw':'cust[CUSTOMER_NO]'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CustomerNumberStart ,'name':'CustomerNumberStart','text':'CustomerNumberStart'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.CustomerNumberCounter ,'name':'CustomerNumberCounter','text':'CustomerNumberCounter'} %}
+                        {% include "MjrLibraryToolsBundle:Form:text.html.twig" with {'value': settings.MinPasswordLength ,'name':'MinPasswordLength','text':'MinPasswordLength'} %}
+                        {% include "MjrLibraryToolsBundle:Form:select.html.twig" with {'value': settings.MinPasswordStrength ,'name': 'MinPasswordStrength', 'text': 'MinPasswordStrength'} %}
+                        {% include "MjrLibraryToolsBundle:Form:checkbox.html.twig" with {'setting': settings.FlagMaintenanceMode ,'name':'FlagMaintenanceMode','value':'1','text':'MaintenanceMode'} %}
+                    </div>
+                    <div class="tab-pane" id="tab_7">
+
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group pull-right" role="group">
+                <button type="submit" class="btn btn-success" role="group">{% trans %}save changes{% endtrans %}</button>
+                <a href="{{ path('system_system_interface') }}" class="btn btn-danger" role="group">{% trans %}cancle{% endtrans %}</a>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

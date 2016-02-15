@@ -24,6 +24,7 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/bootstrap/bootstrap.less
                 - %kernel.root_dir%/../var/vendor/components/font-awesome/less/font-awesome.less
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/css/select2.css
             filters:
                 - lessphp
             output: css/bootstrap.css
@@ -57,6 +58,9 @@ assetic:
                 - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/scrollspy.js
                 - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/tab.js
                 - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/affix.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/bootbox.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/growl.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/select2.full.min.js
             output: js/bootstrap.js
         bootstrap_switch_js:
             inputs:
@@ -158,16 +162,7 @@ doctrine:
                 dir: "%kernel.root_dir%/../var/vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
                 alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
                 is_bundle: false
-            mjr_library_queue:
-                type: annotation
-                dir: "%kernel.root_dir%/../usr/Mjr/Library/QueueBundle/Entities"
-                prefix: Mjr\Library\QueueBundle\Entities\System
-                alias: MjrLibraryQueueBundle
-            mjr_library_entities:
-                type: annotation
-                dir: "%kernel.root_dir%/../usr/Mjr/Library/EntitiesBundle/Entities"
-                prefix: Mjr\Library\EntitiesBundle\Entities
-                alias: MjrLibraryEntitiesBundle
+
         filters:
             softdeleteable:
                 class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
@@ -230,9 +225,14 @@ mopa_bootstrap:
     icons:
         icon_set: fontawesome4
 
-mjr_library_queue:
-    queue_options_defaults:
-        max_concurrent_jobs: 2
+mjr_library_errbit:
+    api_key: "%errbit_api_key%"
+    async: %errbit_async%
+    host: "%errbit_host%"
+    secure: %errbit_secure%
+    ignored_exceptions:
+        - Symfony\Component\HttpKernel\Exception\HttpException
+
 
 snc_redis:
     clients:

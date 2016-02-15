@@ -1,0 +1,16 @@
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10 col-lg-11 col-lg-offset-1">
+        <div class="checkbox">
+            <label>
+                <input
+                        type="checkbox"
+                        name="{{ name }}"
+                        id="{% if id is defined %}{{ id }}{% else %}{{ name }}{%  endif %}"
+                        value="{% if boxValue is defined %}{{ boxValue }}{% else %}1{% endif %}"
+                        {% if setting is defined and setting == true %}checked{% endif %}
+                >
+                {{ text|trans }}
+            </label>
+        </div>
+    </div>
+</div>

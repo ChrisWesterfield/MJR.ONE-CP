@@ -183,4 +183,13 @@
             $response->headers->set('Content-Type','application/json');
             return $response;
         }
+
+        /**
+         * Returns the Config Server Entity
+         * @return \Mjr\Library\EntitiesBundle\ConfigService
+         */
+        protected function getConfig()
+        {
+            return $this->get('mjr_library_entities.config');
+        }
     }
