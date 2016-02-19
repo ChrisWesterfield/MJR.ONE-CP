@@ -39,7 +39,7 @@ mjr_library_tools:
 
 mjr_library_profiler:
     location_web:   https://cp.mjr.one/bundles/mjrlibraryprofiler/debug/profiler/profiler/xhprof_html/index.php
-    enabled:        true
+    enabled:        false
     skip_builtin_functions: false
     exclude_patterns: ['/styles/','/scripts/', '/fonts/', '/images/']
     command: "off"

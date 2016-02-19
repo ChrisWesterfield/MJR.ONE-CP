@@ -146,3 +146,4 @@ mjr_frontend_dashboard:
     resource: "@MjrFrontendDashboardBundle/Controller/"
     type:     annotation
     prefix:   /
+

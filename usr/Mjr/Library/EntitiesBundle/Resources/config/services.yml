@@ -7,8 +7,23 @@ parameters:
     gedmo.listener.sluggable.class: Gedmo\Sluggable\SluggableListener
     gedmo.listener.sortable.class: Gedmo\Sortable\SortableListener
     gedmo.listener.loggable.class: Gedmo\Loggable\LoggableListener
+    mjr_library_entities.translation.class: Mjr\Library\EntitiesBundle\DbLoader
+    mjr_library_entities.translation_dump.class: Mjr\Library\EntitiesBundle\DbDumper
 
 services:
+
+    mjr_library_entities.translation:
+        class: %mjr_library_entities.translation.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: translation.loader, alias: db }
+
+    mjr_library_entities.translation_dumper:
+        class: %mjr_library_entities.translation_dump.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: "translation.dumper", alias: db }
+  
     mjr_library_entities.config:
         class: %mjr_library_entities.config.class%
         arguments: ['@service_container','@doctrine.orm.entity_manager']

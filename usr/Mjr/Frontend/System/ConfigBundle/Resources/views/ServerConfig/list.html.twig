@@ -1,7 +1,18 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}MjrFrontendSystemConfigBundle:ServerConfig:List{% endblock %}
+{% block title %}{% trans %}Server Configuration{% endtrans %}{% endblock %}
 
 {% block body %}
-<h1>Welcome to the ServerConfig:List page</h1>
+<h1>{% trans %}Server Configuration{% endtrans %}</h1>
+<ul class="list-group">
+    {% if results|length > 0 %}
+        {% for server_id,server_name in results %}
+            <li class="list-group-item">
+                <a href="{{ path('system_system_config_edit', {'Id': server_id }) }}">
+                    {{ server_name }}
+                </a>
+            </li>
+        {% endfor %}
+    {% endif %}
+</ul>
 {% endblock %}

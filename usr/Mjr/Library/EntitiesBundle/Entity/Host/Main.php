@@ -6,6 +6,15 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Mjr\Library\EntitiesBundle\Entity\Cron;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Dns;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\FastCgi;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\JailKit;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Mail;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Monitoring;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Server;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Web;
+use Mjr\Library\EntitiesBundle\Entity\Host\Server\Xmpp;
 use Mjr\Library\EntitiesBundle\Traits\IdTrait;
 use Mjr\Library\EntitiesBundle\Traits\SystemGroupTrait;
 use Mjr\Library\EntitiesBundle\Traits\SystemUserTrait;
@@ -27,7 +36,6 @@ class Main
     use SystemUserTrait;
     use LogableTrait;
     use IdTrait;
-
     /**
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      * @var string
@@ -107,11 +115,50 @@ class Main
      */
     protected $xmpp;
     /**
-     * @ORM\Column(name="config", type="string", nullable=true)
-     * @var string
-     * @Gedmo\Versioned
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Server", mappedBy="Server")
+     * @var Server
      */
-    protected $config;
+    protected $ConfigServer;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Cron", mappedBy="Server")
+     * @var Cron
+     */
+    protected $ConfigCron;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Dns", mappedBy="Server")
+     * @var Dns
+     */
+    protected $ConfigDns;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\FastCgi", mappedBy="Server")
+     * @var FastCgi
+     */
+    protected $ConfigFastCgi;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\JailKit", mappedBy="Server")
+     * @var JailKit
+     */
+    protected $ConfigJailKit;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Mail", mappedBy="Server")
+     * @var Mail
+     */
+    protected $ConfigMail;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Monitoring", mappedBy="Server")
+     * @var Monitoring
+     */
+    protected $ConfigMonitoring;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Web", mappedBy="Server")
+     * @var Web
+     */
+    protected $ConfigWeb;
+    /**
+     * @ORM\OneToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\Host\Server\Xmpp", mappedBy="Server")
+     * @var Xmpp
+     */
+    protected $ConfigXmpp;
     /**
      * @ORM\Column(name="updated", type="integer", nullable=true)
      * @var integer
@@ -479,5 +526,165 @@ class Main
         return $this;
     }
 
+    /**
+     * @return Server
+     */
+    public function getConfigServer()
+    {
+        return $this->ConfigServer;
+    }
 
+    /**
+     * @param Server $ConfigServer
+     * @return $this
+     */
+    public function setConfigServer($ConfigServer)
+    {
+        $this->ConfigServer = $ConfigServer;
+        return $this;
+    }
+
+    /**
+     * @return Cron
+     */
+    public function getConfigCron()
+    {
+        return $this->ConfigCron;
+    }
+
+    /**
+     * @param Cron $ConfigCron
+     * @return $this
+     */
+    public function setConfigCron($ConfigCron)
+    {
+        $this->ConfigCron = $ConfigCron;
+        return $this;
+    }
+
+    /**
+     * @return Dns
+     */
+    public function getConfigDns()
+    {
+        return $this->ConfigDns;
+    }
+
+    /**
+     * @param Dns $ConfigDns
+     * @return $this
+     */
+    public function setConfigDns($ConfigDns)
+    {
+        $this->ConfigDns = $ConfigDns;
+        return $this;
+    }
+
+    /**
+     * @return FastCgi
+     */
+    public function getConfigFastCgi()
+    {
+        return $this->ConfigFastCgi;
+    }
+
+    /**
+     * @param FastCgi $ConfigFastCgi
+     * @return $this
+     */
+    public function setConfigFastCgi($ConfigFastCgi)
+    {
+        $this->ConfigFastCgi = $ConfigFastCgi;
+        return $this;
+    }
+
+    /**
+     * @return JailKit
+     */
+    public function getConfigJailKit()
+    {
+        return $this->ConfigJailKit;
+    }
+
+    /**
+     * @param JailKit $ConfigJailKit
+     * @return $this
+     */
+    public function setConfigJailKit($ConfigJailKit)
+    {
+        $this->ConfigJailKit = $ConfigJailKit;
+        return $this;
+    }
+
+    /**
+     * @return Mail
+     */
+    public function getConfigMail()
+    {
+        return $this->ConfigMail;
+    }
+
+    /**
+     * @param Mail $ConfigMail
+     * @return $this
+     */
+    public function setConfigMail($ConfigMail)
+    {
+        $this->ConfigMail = $ConfigMail;
+        return $this;
+    }
+
+    /**
+     * @return Monitoring
+     */
+    public function getConfigMonitoring()
+    {
+        return $this->ConfigMonitoring;
+    }
+
+    /**
+     * @param Monitoring $ConfigMonitoring
+     * @return $this
+     */
+    public function setConfigMonitoring($ConfigMonitoring)
+    {
+        $this->ConfigMonitoring = $ConfigMonitoring;
+        return $this;
+    }
+
+    /**
+     * @return Web
+     */
+    public function getConfigWeb()
+    {
+        return $this->ConfigWeb;
+    }
+
+    /**
+     * @param Web $ConfigWeb
+     * @return $this
+     */
+    public function setConfigWeb($ConfigWeb)
+    {
+        $this->ConfigWeb = $ConfigWeb;
+        return $this;
+    }
+
+    /**
+     * @return Xmpp
+     */
+    public function getConfigXmpp()
+    {
+        return $this->ConfigXmpp;
+    }
+
+    /**
+     * @param Xmpp $ConfigXmpp
+     * @return $this
+     */
+    public function setConfigXmpp($ConfigXmpp)
+    {
+        $this->ConfigXmpp = $ConfigXmpp;
+        return $this;
+    }
 }

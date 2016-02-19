@@ -37,14 +37,14 @@ class DirectoryStructure
 
     /**
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="Mjr\Library\NavigationBundle\Entity\System\Navigation", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Mjr\Library\EntitiesBundle\Entity\System\DirectoryStructure", inversedBy="children")
      * @ORM\JoinColumn(referencedColumnName="id", onDelete="CASCADE")
      * @var DirectoryStructure
      */
     protected $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="Mjr\Library\NavigationBundle\Entity\System\Navigation", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Mjr\Library\EntitiesBundle\Entity\System\DirectoryStructure", mappedBy="parent")
      * @ORM\OrderBy({"lft" = "ASC"})
      * @var ArrayCollection
      */
