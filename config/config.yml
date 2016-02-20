@@ -64,7 +64,7 @@ assetic:
             output: js/bootstrap.js
         bootstrap_switch_js:
             inputs:
-                - %kernel.root_dir%/../var/vendor/components/bootstrap-switch/dist/js/bootstrap-switch.js
+                - %kernel.root_dir%/../usr/Components/bootstrap-switch/dist/js/bootstrap-switch.js
             output: js/bootstrap-switch.js
         mopa_bundle_js:
             inputs:
