@@ -1,3 +1,8 @@
+/var/logs/nginx/error.log
+/var/logs/nginx/access.log
+/var/logs/prod.log
+/var/logs/dev.log
+/var/logs/php5-fpm.log
 /build/
 /config/parameters.yml
 /var/*

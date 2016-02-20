@@ -25,3 +25,5 @@ parameters:
     database_root_port: 3306
     database_root_user: root
     database_root_password: hotewei79
+    mongo_admin: admin
+    mongo_admin_password: "AO+Rh0q!a5Ö24gEYqlWTqPbv8m<bapOU"
