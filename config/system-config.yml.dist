@@ -1,0 +1,11 @@
+parameters:
+
+    system_config_logo_small: ""
+    system_config_logo_large: ""
+    system_config_project_name: ""
+    system_config_company_name: ""
+    system_config_company_link: ""
+    errbit_api_key: ""
+    errbit_async: true
+    errbit_host: ""
+    errbit_secure: false

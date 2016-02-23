@@ -1,4 +1,96 @@
+parameters:
+    mjr_library_entities.config.class: Mjr\Library\EntitiesBundle\ConfigService
+    mjr_library_entities.extension.listener.class: Mjr\Library\EntitiesBundle\ExtensionListener
+    gedmo.listener.tree.class: Gedmo\Tree\TreeListener
+    gedmo.listener.translatable.class: Gedmo\Translatable\TranslatableListener
+    gedmo.listener.timestampable.class: Gedmo\Timestampable\TimestampableListener
+    gedmo.listener.sluggable.class: Gedmo\Sluggable\SluggableListener
+    gedmo.listener.sortable.class: Gedmo\Sortable\SortableListener
+    gedmo.listener.loggable.class: Gedmo\Loggable\LoggableListener
+    mjr_library_entities.translation.class: Mjr\Library\EntitiesBundle\DbLoader
+    mjr_library_entities.translation_dump.class: Mjr\Library\EntitiesBundle\DbDumper
+    mjr_library_entities.twig.config.class: Mjr\Library\EntitiesBundle\TwigConfig
+
 services:
-#    mjr_library_entities.example:
-#        class: Mjr\Library\EntitiesBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+
+    mjr_library_entities.translation:
+        class: %mjr_library_entities.translation.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: translation.loader, alias: db }
+
+    mjr_library_entities.translation_dumper:
+        class: %mjr_library_entities.translation_dump.class%
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: "translation.dumper", alias: db }
+  
+    mjr_library_entities.config:
+        class: %mjr_library_entities.config.class%
+        arguments: ['@service_container','@doctrine.orm.entity_manager']
+
+
+    mjr_library_entities.twig.config:
+        class: %mjr_library_entities.twig.config.class%
+        arguments: [ '@mjr_library_entities.config' ]
+        tags:
+          - { name: twig.extension }
+
+    # KernelRequest listener
+    mjr_library_entities.extension.listener:
+        class: %mjr_library_entities.extension.listener.class%
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+        tags:
+            # translatable sets locale after router processing
+            - { name: kernel.event_listener, event: kernel.request, method: onLateKernelRequest, priority: -10 }
+            # loggable hooks user username if one is in security context
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            # translatable sets locale such as default application locale before command execute
+            - { name: kernel.event_listener, event: console.command, method: onConsoleCommand, priority: -10 }
+
+
+    # Doctrine Extension listeners to handle behaviors
+    gedmo.listener.tree:
+        class: %gedmo.listener.tree.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.translatable:
+        class: %gedmo.listener.translatable.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+            - [ setDefaultLocale, [ %locale% ] ]
+            - [ setTranslationFallback, [ false ] ]
+
+    gedmo.listener.timestampable:
+        class: %gedmo.listener.timestampable.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.sluggable:
+        class: %gedmo.listener.sluggable.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.sortable:
+        class: %gedmo.listener.sortable.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]
+
+    gedmo.listener.loggable:
+        class: %gedmo.listener.loggable.class%
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ "@annotation_reader" ] ]

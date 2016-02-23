@@ -1,0 +1,18 @@
+parameters:
+    ru2_f_two_factor.authenticator.class: R\U2FTwoFactorBundle\Security\TwoFactor\Prodiver\U2F\U2FAuthenticator
+    ru2_f_two_factor.provider.class: R\U2FTwoFactorBundle\Security\TwoFactor\Prodiver\U2F\TwoFactorProvider
+
+services:
+    ru2_f_two_factor.authenticator:
+        class: %ru2_f_two_factor.authenticator.class%
+        arguments:
+            - "@request_stack"
+    ru2_f_two_factor.provider:
+        class: %ru2_f_two_factor.provider.class%
+        arguments:
+            - "@ru2_f_two_factor.authenticator"
+            - "@templating"
+            - "%ru2_f_two_factor.formtemplate%"
+            - "%ru2_f_two_factor.authcodeparameter%"
+        tags:
+            - { name: scheb_two_factor.provider, alias: u2f_two_factor }

@@ -1,0 +1,77 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        {# icon by Apostolos Paschalidis interactivemania #}
+        <img width="28" height="28" alt="Time" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB7UlEQVR42r2VTShEYRiFzfU3jRSi/CSRZEF2mFIjMxsbSrGwsaBYULbMykZZWtjZaEqpWVjMzspE2WosWJCIpY0U4+c66tw6fc3MvbkzM/X0fr/vmfPe77u3wrbtsuJpEX6BP8oiqELFEHUVY+wEPTJWMsFKxl2wz7ZVfEEmZqwHd+ADtPsV9eJuGthkS+ZK5vBIBB9Bsx+XbmK94IViWcbV/C7dT7NbOeMU+QLfbF+BoCR2FVIKXYUQyFDk23FI5g2Xuq8VLHsVVHdTIpACe9K/AJYI6b5NrgnLuCeHSRGYA12Gy2knoYj3yTNP5yq1viurQA37/eCVG59AB8cTIniSoyqHnHtnXOF4rSOq6upyQxInZHzYOTxkTOaiMv7F+ABa1KnTaAAxEAHj4Fo2TxouUjKXlLKmDbEfxgMQBk1a0hgnTTKgjmuqcjj5AN1gEdjiKu4ICzEVjEiCLKMNtsWBfqZOjRN8K/0drjlm/40x4sXhEOcto6yzcj9t4Rm0cc0AyJoO8z3DCTBa4MpY4IyJPokN1o3yDzJvFDQYp9QT6nLBEWS8kedt5Tn9AeMeCkxcwGUQXErJlvQPOW3JFzDeNP9yuUaxc1Dt9gL3I2gxNoJ7MGO48yfoUtoREJK50gia5SuLoJ5IH4Kl5Rd9TFtTIy1XIQAAAABJRU5ErkJggg==">
+        <span class="sf-toolbar-info-piece-additional-detail">XHProf</span>
+    {% endset %}
+    {% if not collector.profiling %}
+        {% set text %}
+            {% spaceless %}
+                <div class="sf-toolbar-info-piece">
+                    <b>Not profiling</b>
+                    <span></span>
+                </div>
+            {% endspaceless %}
+            {% if not collector.xhprofextensionexists %}
+                <br />
+                <span style="color:red;">Xhprof extension not exists</span>
+            {% endif %}
+        {% endset %}
+    {% else %}
+        {% set text %}
+            <div class="sf-toolbar-info-piece">
+                <b>XHProf</b>
+            </div>
+        {% endset %}
+    {% endif %}
+    {% include 'WebProfilerBundle:Profiler:toolbar_item.html.twig' with { 'link': profiler_url } %}
+{% endblock %}
+
+
+
+{% block menu %}
+    <span class="label">
+        <span class="icon">
+            <img width="28" height="28" alt="Time" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB7UlEQVR42r2VTShEYRiFzfU3jRSi/CSRZEF2mFIjMxsbSrGwsaBYULbMykZZWtjZaEqpWVjMzspE2WosWJCIpY0U4+c66tw6fc3MvbkzM/X0fr/vmfPe77u3wrbtsuJpEX6BP8oiqELFEHUVY+wEPTJWMsFKxl2wz7ZVfEEmZqwHd+ADtPsV9eJuGthkS+ZK5vBIBB9Bsx+XbmK94IViWcbV/C7dT7NbOeMU+QLfbF+BoCR2FVIKXYUQyFDk23FI5g2Xuq8VLHsVVHdTIpACe9K/AJYI6b5NrgnLuCeHSRGYA12Gy2knoYj3yTNP5yq1viurQA37/eCVG59AB8cTIniSoyqHnHtnXOF4rSOq6upyQxInZHzYOTxkTOaiMv7F+ABa1KnTaAAxEAHj4Fo2TxouUjKXlLKmDbEfxgMQBk1a0hgnTTKgjmuqcjj5AN1gEdjiKu4ICzEVjEiCLKMNtsWBfqZOjRN8K/0drjlm/40x4sXhEOcto6yzcj9t4Rm0cc0AyJoO8z3DCTBa4MpY4IyJPokN1o3yDzJvFDQYp9QT6nLBEWS8kedt5Tn9AeMeCkxcwGUQXErJlvQPOW3JFzDeNP9yuUaxc1Dt9gL3I2gxNoJ7MGO48yfoUtoREJK50gia5SuLoJ5IH4Kl5Rd9TFtTIy1XIQAAAABJRU5ErkJggg==">
+        </span>
+        <strong>XHProf</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    {% include "MjrLibraryToolsBundle:Collector:css.html.twig" %}
+    <div class="row">
+        <div class="col-lg-5">
+            <iframe src="{{ collector.xhprofurl }}" id="iFrameXhprof" style="width: 450px; height:450px;"></iframe>
+        </div>
+    </div>
+    <script>
+        var buffer = 20; //scroll bar buffer
+        var iframe = document.getElementById('iFrameXhprof');
+        function pageY(elem) {
+            return elem.offsetParent ? (elem.offsetTop + pageY(elem.offsetParent)) : elem.offsetTop;
+        }
+        function pageX(elem) {
+            return elem.offsetParent ? (elem.offsetLeft + pageX(elem.offsetParent)) : elem.offsetLeft;
+        }
+        function resizeIframe() {
+            var height = document.documentElement.clientHeight;
+            var width = document.documentElement.clientWidth;
+            height -= pageY(document.getElementById('iFrameXhprof'))+ buffer ;
+            height = (height < 0) ? 0 : height;
+            width -= pageX(document.getElementById('iFrameXhprof'))+buffer;
+            document.getElementById('iFrameXhprof').style.height = height + 'px';
+            document.getElementById('iFrameXhprof').style.width = width + 'px';
+        }
+        // .onload doesn't work with IE8 and older.
+        if (iframe.attachEvent) {
+            iframe.attachEvent("onload", resizeIframe);
+        } else {
+            iframe.onload=resizeIframe;
+        }
+
+        window.onresize = resizeIframe;
+    </script>
+{% endblock %}

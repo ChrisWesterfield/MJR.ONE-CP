@@ -1,3 +1,8 @@
+mjr_frontend_operations:
+    resource: "@MjrFrontendOperationsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mjr_frontend_system_aps:
     resource: "@MjrFrontendSystemAPSBundle/Controller/"
     type:     annotation
@@ -141,3 +146,7 @@ mjr_frontend_dashboard:
     resource: "@MjrFrontendDashboardBundle/Controller/"
     type:     annotation
     prefix:   /
+
+ru2_f_two_factor:
+    path:   /Operations/U2F/Register
+    defaults: { _controller: RU2FTwoFactorBundle:Register:u2f }

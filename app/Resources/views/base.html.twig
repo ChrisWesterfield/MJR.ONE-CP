@@ -1,13 +1,115 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% block htmlHead %}
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>{% block title %}{% endblock %}</title>
+            <!-- Tell the browser to be responsive to screen width -->
+            <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/mjrthemeadminlte/Theme/Style.css') }}">
+            {# Custom Style Sheets #}
+            {% block stylesheets %}
+            {% endblock %}
+            <style>
+                {% block stylesheetsDefinition %}
+                {% endblock %}
+            </style>
+        {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% block pageBody %}
+        <body class="hold-transition skin-blue sidebar-mini">
+            {% block wrapper %}
+                <div class="wrapper">
+                    {% block header %}
+                        <header class="main-header">
+
+                            <!-- Logo -->
+                            <a href="{{ path('homepage_controller') }}" class="logo">
+                                <img src="{{ asset(SystemProjectLogoSmall) }}">
+                            </a>
+
+                            {% include ":Base:TopNavbar.html.twig" %}
+                        </header>
+                    {% endblock %}
+                    {% block leftNavigation %}
+                        <!-- Left side column. contains the logo and sidebar -->
+                        <aside class="main-sidebar">
+                            <!-- sidebar: style can be found in sidebar.less -->
+                            <section class="sidebar">
+                                {% include ":Base:Navigation.html.twig" %}
+                            </section>
+                            <!-- /.sidebar -->
+                        </aside>
+                    {% endblock %}
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <div class="content">
+                            {% block body %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <!-- /.content-wrapper -->
+                    {% block footer %}
+                        <footer class="main-footer">
+                            <div class="pull-left" style="margin-top: -8px;">
+                                Copyright &copy; 2015-{{ "now"|date("Y") }}
+                                <strong>
+                                    <a href="{{ getConfig('CustomLinkLoginPage') }}" target="_blank">
+                                        {{ getConfig('CompanyName') }}
+                                    </a>.
+                                </strong>
+                            </div>
+                            <div class="pull-right hidden-xs" style="margin-top: -8px;">
+                                <b>{% trans %}Version{% endtrans %}</b>&nbsp;{{ SystemVersion }}
+                            </div>
+                            <div class="pull-right hidden-xs" style="margin-top: -8px;">
+                                <strong>Theme Copyright:</strong>&nbsp;&nbsp;Copyright © 2015-2016 Almsaeed Studio.&nbsp;&nbsp;<strong>Modification by:</strong> MJR.ONE&nbsp;&nbsp;
+                            </div>
+                        </footer>
+                    {% endblock %}
+                    {% block rightBar %}
+                        <!-- Control Sidebar -->
+                        <aside class="control-sidebar control-sidebar-dark">
+
+                        </aside>
+                    {% endblock %}
+                    <!-- /.control-sidebar -->
+                    <!-- Add the sidebar's background. This div must be placed
+                         immediately after the control sidebar -->
+                    <div class="control-sidebar-bg">
+
+                    </div>
+
+                </div>
+            {% endblock %}
+            <!-- ./wrapper -->
+            {% block javascripts %}
+                {% block javascriptsLoader %}
+                    <!-- jQuery -->
+                    <script src="{{ asset('js/jquery.js') }}"></script>
+                    <!-- Bootstrap  -->
+                    <script src="{{ asset('js/bootstrap.js') }}"></script>
+                    <!-- Mopa -->
+                    <script src="{{ asset('js/mopa.js') }}"></script>
+                    <!-- Moment -->
+                    <script src="{{ asset('js/moment.js') }}"></script>
+                    <!-- Polymer -->
+                    <script src="{{ asset('bundles/mjrlibrarytools/bower/bower_components/webcomponentsjs/webcomponents.min.js') }}"></script>
+                    <!-- APP JS -->
+                    <script src="{{ asset('js/app.js') }}"></script>
+                {% endblock %}
+                <script>
+                    $(function()
+                    {
+                        {% block javascriptsOnLoad %}
+
+                        {% endblock %}
+                    });
+                </script>
+            {% endblock %}
+        </body>
+    {% endblock %}
 </html>

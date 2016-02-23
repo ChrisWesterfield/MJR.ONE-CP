@@ -40,7 +40,6 @@
         "pagerfanta/pagerfanta": "dev-master",
         "ambta/doctrine-encrypt-bundle": "2.4.*",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "components/bootstrap-switch": "dev-master",
 	    "moment/moment": "2.10.6",
         "yubico/u2flib-server": "^0.1.0",
         "endroid/qrcode": "~1.0",
@@ -52,14 +51,16 @@
         "components/jqueryui": "1.11.4",
         "snc/redis-bundle": "dev-master",
         "symfony/assetic-bundle": "2.7.*",
-        "knplabs/knp-menu-bundle": "2.*"
+        "knplabs/knp-menu-bundle": "2.*",
+        "dbtlr/php-airbrake": "~1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^2.7",
 	    "andres-montanez/magallanes": "~1.0.1",
         "raulfraile/ladybug-bundle": "~1.0",
-        "raulfraile/ladybug-plugin-extra": "~1.0"
+        "raulfraile/ladybug-plugin-extra": "~1.0",
+        "lox/xhprof": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

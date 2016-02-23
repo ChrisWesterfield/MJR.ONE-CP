@@ -1,0 +1,72 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{% trans %}Server Configuration Editor{% endtrans %}{% endblock %}
+
+{% block body %}
+    <form role="form" action="{{ path('system_system_config_edit', {"Id": id}) }}" method="post">
+        <fieldset>
+            <legend>{% trans %}Server Configuration Editor{% endtrans %}</legend>
+        </fieldset>
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#server" aria-atomic="server" role="tab" data-toggle="tab">{% trans %}Server{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#web" aria-atomic="web" role="tab" data-toggle="tab">{% trans %}Web{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#fastcgi" aria-atomic="fastcgi" role="tab" data-toggle="tab">{% trans %}FastCgi{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#mail" aria-atomic="mail" role="tab" data-toggle="tab">{% trans %}Mail{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#dns" aria-atomic="dns" role="tab" data-toggle="tab">{% trans %}DNS{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#xmpp" aria-atomic="xmpp" role="tab" data-toggle="tab">{% trans %}XMPP{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#cron" aria-atomic="cron" role="tab" data-toggle="tab">{% trans %}Cron{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#jailkit" aria-atomic="jailkit" role="tab" data-toggle="tab">{% trans %}Jailkit{% endtrans %}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#monitoring" aria-atomic="monitoring" role="tab" data-toggle="tab">{% trans %}Monitoring{% endtrans %}</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="server">
+                    {{ form_widget(form.server) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="web">
+                    {{ form_widget(form.web) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="fastcgi">
+                    {{ form_widget(form.fastcgi) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="mail">
+                    {{ form_widget(form.mail) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="dns">
+                    {{ form_widget(form.dns) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="xmpp">
+                    {{ form_widget(form.xmpp) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="cron">
+                    {{ form_widget(form.cron) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="jailkit">
+                    {{ form_widget(form.jailkit) }}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="monitoring">
+                    {{ form_widget(form.monitoring) }}
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

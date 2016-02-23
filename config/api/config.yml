@@ -1,0 +1,40 @@
+imports:
+    - { resource: security.yml }
+    - { resource: ../config.yml }
+
+fos_rest:
+    view:
+        formats:
+            rss: true
+            xml: true
+            json: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        jsonp_handler:
+           callback_param:       mjrOneCp
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/api/routing.yml"
+    serializer:
+        enabled: true
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        console:
+            type:  console
+
+#Documentation
+nelmio_api_doc: ~

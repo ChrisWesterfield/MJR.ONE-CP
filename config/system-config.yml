@@ -1,0 +1,11 @@
+parameters:
+
+    system_config_logo_small: "images/logo/small.png"
+    system_config_logo_large: "images/logo/large.png"
+    system_config_project_name: "MJR.ONE Control Panel"
+    system_config_company_name: "MJR.ONE"
+    system_config_company_link: "http://www.mjr.one"
+    errbit_api_key: "629371f8719f93bbb01d84c967d21943"
+    errbit_async: true
+    errbit_host: "error.mjr.one"
+    errbit_secure: true

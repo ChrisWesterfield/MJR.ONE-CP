@@ -1,0 +1,12 @@
+parameters:
+    mjr_library_errbit.twig.class: Mjr\Library\ErrbitBundle\Twig\NotifierExtension
+    mjr_library_errbit.configuration.class: Mjr\Library\ErrbitBundle\Airbreak\Bridge\Configuration
+    mjr_library_errbit.client.class: Mjr\Library\ErrbitBundle\Airbreak\Bridge\Client
+    mjr_library_errbit.exception_listener.class: Mjr\Library\ErrbitBundle\EventListener\ExceptionListener
+    mjr_library_errbit.shutdown_listener.class: Mjr\Library\ErrbitBundle\EventListener\ShutdownListener
+services:
+    mjr_library_errbit.twig.notifier_extension:
+        class: %mjr_library_errbit.twig.class%
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']

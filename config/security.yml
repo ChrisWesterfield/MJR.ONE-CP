@@ -1,24 +1,102 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    access_control:
+        - { path: ^/Operations/Form,    roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/Login,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword1,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword2,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword3,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/Operations/forgotPassword4,   roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/(_(profiler|wdt))/, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/, roles: ROLE_USER }
+        - { path: ^/System, roles: ROLE_ADMIN }
+        - { path: ^/Monitoring, roles: ROLE_ADMIN }
+        - { path: ^/Operations/Csp/Report, roles: ROLE_ADMIN }
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
+    encoders:
+          Symfony\Component\Security\Core\User\UserInterface:
+                algorithm: bcrypt
+                cost: 10
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+        secured_area:
+            pattern: ^/
+
+            anonymous: ~
+
+            form_login:
+                #csrf_provider: security.csrf.token_manager
+                #csrf_parameter: _token
+                login_path: /Operations/Form
+                check_path: /Operations/Login
+                always_use_default_target_path: true
+                default_target_path: /
+                username_parameter: _username
+                password_parameter: _password
+                success_handler: mjr.frontend.operations.success_handler
+
+            logout:
+                path: /Operations/Logout
+                target: /Operations/Form
+
+        default:
+            pattern: ^/
+            anonymous: ~
+            provider: mjr_auth_db
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
+            #remember_me:
+            #    secret: '%secret%'
+            #    lifetime: 7200
+            #    path: /
+            #    secure: true
+            #    httponly: true
+            #    remember_me_parameter: _remember_me
+            #    domain: ~
             anonymous: ~
-            # activate different ways to authenticate
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    providers:
+        mjr_auth_db:
+            entity:
+                class: Mjr\Library\EntitiesBundle\Entity\User\User
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    ############################
+    # ROLES                    #
+    ############################
+    role_hierarchy:
+        #ROLE GUEST
+        ROLE_GUEST:
+        #GENERAL LOGIN CAPABAL
+        ROLE_USER: ROLE_GUEST
+        ############################
+        #Operational Roles         #
+        ############################
+        #ROLE MAIL SERVICES
+        ROLE_EMAIL: ROLE_USER
+        #ROLE FTP Services
+        ROLE_FILE: ROLE_USER
+        #ROLE WEBSITE Customer
+        ROLE_WEBSITE: ROLE_EMAIL, ROLE_FILE, ROLE_USER
+        ROLE_CUSTOMER: ROLE_WEBSITE, ROLE_FILE, ROLE_USER, ROLE_EMAIL
+        #ROLE RESELLER
+        ROLE_RESELLER: ROLE_CUSTOMER
+        ############################
+        #ADMINISTRATION            #
+        ############################
+        #STAFF
+        ROLE_STAFF: ROLE_WEBSITE
+        #SUPPORTER
+        ROLE_SUPPORT: ROLE_STAFF
+        #BILLING
+        ROLE_BILLING: ROLE_STAFF
+        #Administrators
+        ROLE_ADMIN: ROLE_USER, ROLE_STAFF, ROLE_SUPPORT, ROLE_BILLING
+        ROLE_DEVELOPER: ROLE_ADMIN
+        #ROOT USER
+        ROLE_ROOT: ROLE_ADMIN, ROLE_DEVELOPER

@@ -113,7 +113,15 @@
          */
         protected function getCache()
         {
-            return $this->container->get('scn_redis.default');
+            return $this->container->get('snc_redis.default');
+        }
+
+        /**
+         * @return mixed
+         */
+        protected function clearRedisCache()
+        {
+            return $this->getCache()->flushAll();
         }
 
         /**
@@ -166,7 +174,7 @@
                 'timestamp'=>$timestamp,
                 'date'=>date('m/d/Y',$timestamp),
                 'time'=>date('H:i:s',$timestamp),
-                'success'=>true,
+                'success'=>$success,
                 'payload'=>$payload
             );
         }
@@ -182,5 +190,14 @@
             $response = new Response(json_encode($return));
             $response->headers->set('Content-Type','application/json');
             return $response;
+        }
+
+        /**
+         * Returns the Config Server Entity
+         * @return \Mjr\Library\EntitiesBundle\ConfigService
+         */
+        protected function getConfig()
+        {
+            return $this->get('mjr_library_entities.config');
         }
     }

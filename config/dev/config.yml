@@ -1,0 +1,85 @@
+imports:
+    - { resource: ../prod/config.yml }
+
+parameters:
+    web.profiler.cache.class: Mjr\Library\ToolsBundle\Profiler\RedisProfilerStorage
+    mjr_library_profiler.xhprof.class: Mjr\Library\ProfilerBundle\Entity\XhprofDatabase
+
+assetic:
+    bundles:        [ MjrLibraryToolsBundle,MjrLibraryProfilerBundle ]
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/dev/routing.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+mjr_library_tools:
+    data_collector:
+        show_filelist:  true
+
+    WebProfiler:
+        routing:
+            enabled: true
+            display_in_wdt: false
+        assetic:
+            enabled: true
+            display_in_wdt: false
+        twig:
+            enabled: true
+            display_in_wdt: false
+        opcache:
+            enabled: true
+    profiler:
+        defaultStorage: false
+        class: %web.profiler.cache.class%
+        dsn: %redis_debug%
+        ttl: 3600
+
+
+mjr_library_profiler:
+    location_web:   https://cp.mjr.one/bundles/mjrlibraryprofiler/debug/profiler/profiler/xhprof_html/index.php
+    enabled:        true
+    skip_builtin_functions: false
+    exclude_patterns: ['/styles/','/scripts/', '/fonts/', '/images/']
+    command: "off"
+    #command_option_name: "xhprof"
+    storage:        php
+    entity_manager:  default
+    entity_class:    %mjr_library_profiler.xhprof.class%
+    enable_xhgui:    true
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        console:
+            type:   console
+            bubble: false
+            channels: [!event, !doctrine]
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type:   firephp
+        #    level:  info
+        #chromephp:
+        #    type:   chromephp
+        #    level:  info
+
+#swiftmailer:
+#    delivery_address: me@example.com
+
+
+
+# Twig Configuration
+twig:
+    globals:
+        SystemDeveloper: true
+
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
