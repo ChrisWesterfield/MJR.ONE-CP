@@ -4,7 +4,9 @@ use Ambta\DoctrineEncryptBundle\AmbtaDoctrineEncryptBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
 use FOS\ElasticaBundle\FOSElasticaBundle;
+use FOS\RestBundle\FOSRestBundle;
 use Knp\Bundle\MenuBundle\KnpMenuBundle;
+use Mjr\ApiBundle\MjrApiBundle;
 use Mjr\Frontend\APSBundle\MjrFrontendAPSBundle;
 use Mjr\Frontend\ClientBundle\MjrFrontendClientBundle;
 use Mjr\Frontend\DashboardBundle\MjrFrontendDashboardBundle;
@@ -35,20 +37,17 @@ use Mjr\Frontend\System\RemoteBundle\MjrFrontendSystemRemoteBundle;
 use Mjr\Frontend\System\UserBundle\MjrFrontendSystemUserBundle;
 use Mjr\Frontend\ToolsBundle\MjrFrontendToolsBundle;
 use Mjr\Frontend\vServerBundle\MjrFrontendvServerBundle;
-use Mjr\Installer\InstallBundle\MjrInstallerInstallBundle;
 use Mjr\Library\BillingBundle\MjrLibraryBillingBundle;
 use Mjr\Library\ControllerBundle\MjrLibraryControllerBundle;
 use Mjr\Library\EntitiesBundle\MjrLibraryEntitiesBundle;
 use Mjr\Library\ErrbitBundle\MjrLibraryErrbitBundle;
 use Mjr\Library\ProfilerBundle\MjrLibraryProfilerBundle;
-use Mjr\Library\QueueBundle\MjrLibraryQueueBundle;
 use Mjr\Library\ToolsBundle\MjrLibraryToolsBundle;
 use Mjr\Server\BackupBundle\MjrServerBackupBundle;
 use Mjr\Server\ClientBundle\MjrServerClientBundle;
 use Mjr\Server\CronBundle\MjrServerCronBundle;
 use Mjr\Server\DatabaseBundle\MjrServerDatabaseBundle;
 use Mjr\Server\DnsBundle\MjrServerDnsBundle;
-use Mjr\Server\InstallBundle\MjrServerInstallBundle;
 use Mjr\Server\MailBundle\MjrServerMailBundle;
 use Mjr\Server\MonitorBundle\MjrServerMonitorBundle;
 use Mjr\Server\RemoteBundle\MjrServerRemoteBundle;
@@ -60,6 +59,9 @@ use Mjr\Server\WebBundle\MjrServerWebBundle;
 use Mjr\Server\XMPPBundle\MjrServerXMPPBundle;
 use Mjr\Theme\AdminLTEBundle\MjrThemeAdminLTEBundle;
 use Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle;
+use Nelmio\ApiDocBundle\NelmioApiDocBundle;
+use R\U2FTwoFactorBundle\RU2FTwoFactorBundle;
+use Scheb\TwoFactorBundle\SchebTwoFactorBundle;
 use Sensio\Bundle\DistributionBundle\SensioDistributionBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle;
@@ -78,7 +80,21 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
-    public function registerBundles()
+    /**
+     * process bundles and add them to the registry
+     * @param $bundles
+     * @param array $registry
+     */
+    protected function addRegisteredBundles($bundles,&$registry=array())
+    {
+        $registry = array_merge($registry,$bundles);
+    }
+
+    /**
+     * register Core Bundles
+     * @param array $registry
+     */
+    protected function registerCoreBundles(&$registry=array())
     {
         $bundles = [
             //Symfony Framework
@@ -90,7 +106,7 @@ class AppKernel extends Kernel
             new DoctrineBundle(),
             new SensioFrameworkExtraBundle(),
             //Caching
-	        new SncRedisBundle(),
+            new SncRedisBundle(),
             //Asstic
             new AsseticBundle(),
             //Library
@@ -103,11 +119,25 @@ class AppKernel extends Kernel
             new AmbtaDoctrineEncryptBundle(),
             new DoctrineMigrationsBundle(),
             new StofDoctrineExtensionsBundle(),
+            //Elastic Search
+            new FOSElasticaBundle(),
+        ];
+        $this->addRegisteredBundles($bundles,$registry);
+    }
+
+    /**
+     * Register Frontend Bundles
+     * @param array $registry
+     */
+    protected function registerFrontendBundles(&$registry=array())
+    {
+        $bundles = [
             //Template Extensions
             new MopaBootstrapBundle(),
             new KnpMenuBundle(),
-            //Elastic Search
-            new FOSElasticaBundle(),
+            //Two Factor Auth
+            new SchebTwoFactorBundle(),
+            new RU2FTwoFactorBundle(),
             //Frontend
             new MjrFrontendOperationsBundle(),
             new MjrFrontendDashboardBundle(),
@@ -141,85 +171,161 @@ class AppKernel extends Kernel
             new MjrFrontendSystemAPSBundle(),
             //themes
             new MjrThemeAdminLTEBundle(),
+
         ];
+        $this->addRegisteredBundles($bundles,$registry);
+    }
 
-        //Console Application
-        if($this->getEnvironment()=='console')
-        {
-            $consoleBundles = array(
-                //Client Related Tasks
-                new MjrServerClientBundle(),
-                //Cron Related Tasks
-                new MjrServerCronBundle(),
-                //Mysql, PgSQL, MongoDB related Tasks
-                new MjrServerDatabaseBundle(),
-                //Dns (mainly bind) related tasks
-                new MjrServerDnsBundle(),
-                //Mail Server Related Tasks
-                new MjrServerMailBundle(),
-                //Monitoring Bundle
-                new MjrServerMonitorBundle(),
-                //Remote Bundle
-                new MjrServerRemoteBundle(),
-                //Rescue Bundle
-                new MjrServerRescueBundle(),
-                //Server Config Related Bundle
-                new MjrServerServerBundle(),
-                //Virtual Machine Bundle
-                new MjrServerVMBundle(),
-                //Web Server Related Bundle
-                new MjrServerWebBundle(),
-                //XMPP Related Bundle
-                new MjrServerXMPPBundle(),
-                //Backup Routines
-                new MjrServerBackupBundle(),
-                //Support Tasks Related Bundle
-                new MjrServerSupportBundle(),
-            );
-            $bundles = array_merge($bundles,$consoleBundles);
-        }
+    /**
+     * Register API Bundles
+     * @param array $registry
+     */
+    protected function registerApiBundles(&$registry=array())
+    {
+        $bundles = [
+            new FOSRestBundle(),
+            new MjrApiBundle(),
+            new NelmioApiDocBundle(),
+        ];
+        $this->addRegisteredBundles($bundles,$registry);
+    }
 
-        if($this->getEnvironment()=='installer')
+    /**
+     * Register Console Bundles
+     * @param array $registry
+     */
+    protected function registerConsoleBundles(&$registry=array())
+    {
+        $bundles = [
+            //Client Related Tasks
+            new MjrServerClientBundle(),
+            //Cron Related Tasks
+            new MjrServerCronBundle(),
+            //Mysql, PgSQL, MongoDB related Tasks
+            new MjrServerDatabaseBundle(),
+            //Dns (mainly bind) related tasks
+            new MjrServerDnsBundle(),
+            //Mail Server Related Tasks
+            new MjrServerMailBundle(),
+            //Monitoring Bundle
+            new MjrServerMonitorBundle(),
+            //Remote Bundle
+            new MjrServerRemoteBundle(),
+            //Rescue Bundle
+            new MjrServerRescueBundle(),
+            //Server Config Related Bundle
+            new MjrServerServerBundle(),
+            //Virtual Machine Bundle
+            new MjrServerVMBundle(),
+            //Web Server Related Bundle
+            new MjrServerWebBundle(),
+            //XMPP Related Bundle
+            new MjrServerXMPPBundle(),
+            //Backup Routines
+            new MjrServerBackupBundle(),
+            //Support Tasks Related Bundle
+            new MjrServerSupportBundle(),
+        ];
+        $this->addRegisteredBundles($bundles,$registry);
+    }
+
+    /**
+     * register Development Bundles
+     * @param array $registry
+     */
+    protected function registerDevBundles(&$registry=array())
+    {
+        $bundles = [
+            new DebugBundle(),
+            new WebProfilerBundle(),
+            new SensioDistributionBundle(),
+            new SensioGeneratorBundle(),
+            new MjrLibraryProfilerBundle(),
+        ];
+        $this->addRegisteredBundles($bundles,$registry);
+    }
+
+    /**
+     * register Installer Basic Bundles
+     * @param array $registry
+     */
+    protected function registerInstallerBundles(&$registry=array())
+    {
+
+    }
+
+    /**
+     * register Bundles
+     * @return array
+     */
+    public function registerBundles()
+    {
+        $registry = [ ];
+        switch($this->getEnvironment())
         {
-            $installer = array(
-                new MjrInstallerInstallBundle()
-            );
-            $bundles = array_merge($bundles,$installer);
+            case 'dev':
+                $this->registerCoreBundles($registry);
+                $this->registerFrontendBundles($registry);
+                $this->registerDevBundles($registry);
+            break;
+            case 'prod':
+                $this->registerCoreBundles($registry);
+                $this->registerFrontendBundles($registry);
+            break;
+            case 'console':
+                $this->registerCoreBundles($registry);
+                $this->registerFrontendBundles($registry);
+                $this->registerDevBundles($registry);
+                $this->registerConsoleBundles($registry);
+            break;
+            case 'api':
+                $this->registerCoreBundles($registry);
+                $this->registerApiBundles($registry);
+            break;
+            case 'installer':
+                $this->registerInstallerBundles($registry);
         }
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            $bundles[] = new DebugBundle();
-            $bundles[] = new WebProfilerBundle();
-            $bundles[] = new SensioDistributionBundle();
-            $bundles[] = new SensioGeneratorBundle();
-            $bundles[] = new MjrLibraryProfilerBundle();
             MjrLibraryToolsBundle::setEnvMode();
         }
-        else
-        {
-            define('env_mode',false);
-        }
 
-        return $bundles;
+        return $registry;
     }
 
+    /**
+     * get Root Directory
+     * @return string
+     */
     public function getRootDir()
     {
         return __DIR__;
     }
 
+    /**
+     * get Cache Directory
+     * @return string
+     */
     public function getCacheDir()
     {
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
+    /**
+     * get Log Directory
+     * @return string
+     */
     public function getLogDir()
     {
         return dirname(__DIR__).'/var/logs';
     }
 
+    /**
+     * register Configuration Container
+     * @param LoaderInterface $loader
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getRootDir().'/../config/config_'.$this->getEnvironment().'.yml');
+        $loader->load($this->getRootDir().'/../config/'.$this->getEnvironment().'/config.yml');
     }
 }

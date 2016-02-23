@@ -6,6 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class VmType
+ * @package Mjr\Library\EntitiesBundle\Form\openVZ
+ * @author Chris Westerfield <chris@westerfield.name>
+ * @license MPL v2.0
+ * @copyright Chris Westerfield & MJR.ONE
+ * @link https://www.mjr.one
+ */
 class VmType extends AbstractType
 {
     /**

@@ -15,7 +15,7 @@ $filePath = $rootdirectory.'/config/parameter.yml';
 if(!file_exists($filePath))
 {
     $filePath = $rootdirectory.'/config/parameters.yml';
-    $systemConfigPath = $rootdirectory.'/config/config_dev.yml';
+    $systemConfigPath = $rootdirectory.'/config/dev/config.yml';
 }
 else
 {
@@ -28,7 +28,7 @@ if(!isset($systemConfig['mjr_library_profiler']) || !isset($systemConfig['mjr_li
     throw new Exception('Profiling has been disabled!');
 }
 $systemDb = $reader->parse(file_get_contents($filePath));
-$masterDev = $reader->parse(file_get_contents($rootdirectory.'/config/config_dev.yml'));
+$masterDev = $reader->parse(file_get_contents($rootdirectory.'/config/dev/config.yml'));
 $dbDriver = $systemDb['parameters']['database_driver'];
 $dbDriver = explode('_',$dbDriver);
 // Change these:

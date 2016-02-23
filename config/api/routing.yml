@@ -1,0 +1,8 @@
+mjr_api:
+    resource: "@MjrApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+# app/config/routing.yml
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /Doc

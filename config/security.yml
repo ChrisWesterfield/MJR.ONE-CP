@@ -12,6 +12,7 @@ security:
         - { path: ^/, roles: ROLE_USER }
         - { path: ^/System, roles: ROLE_ADMIN }
         - { path: ^/Monitoring, roles: ROLE_ADMIN }
+        - { path: ^/Operations/Csp/Report, roles: ROLE_ADMIN }
 
     encoders:
           Symfony\Component\Security\Core\User\UserInterface:
@@ -82,8 +83,9 @@ security:
         ROLE_FILE: ROLE_USER
         #ROLE WEBSITE Customer
         ROLE_WEBSITE: ROLE_EMAIL, ROLE_FILE, ROLE_USER
+        ROLE_CUSTOMER: ROLE_WEBSITE, ROLE_FILE, ROLE_USER, ROLE_EMAIL
         #ROLE RESELLER
-        ROLE_RESELLER: ROLE_WEBSITE
+        ROLE_RESELLER: ROLE_CUSTOMER
         ############################
         #ADMINISTRATION            #
         ############################
@@ -95,5 +97,6 @@ security:
         ROLE_BILLING: ROLE_STAFF
         #Administrators
         ROLE_ADMIN: ROLE_USER, ROLE_STAFF, ROLE_SUPPORT, ROLE_BILLING
+        ROLE_DEVELOPER: ROLE_ADMIN
         #ROOT USER
-        ROLE_ROOT: ROLE_ADMIN
+        ROLE_ROOT: ROLE_ADMIN, ROLE_DEVELOPER

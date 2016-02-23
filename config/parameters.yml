@@ -27,3 +27,5 @@ parameters:
     database_root_password: hotewei79
     mongo_admin: admin
     mongo_admin_password: "AO+Rh0q!a5Ö24gEYqlWTqPbv8m<bapOU"
+    google_authenticator_name: "MJR.ONE CP"
+    google_authenticator_issuer: "Mjr One CP"

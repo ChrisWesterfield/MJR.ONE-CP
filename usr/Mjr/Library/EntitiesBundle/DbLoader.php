@@ -9,6 +9,14 @@
     use Symfony\Component\Translation\Loader\LoaderInterface;
     use Symfony\Component\Translation\MessageCatalogue;
 
+    /**
+     * Class DbLoader
+     * @package Mjr\Library\EntitiesBundle
+     * @author Chris Westerfield <chris@westerfield.name>
+     * @license MPL v2.0
+     * @copyright Chris Westerfield & MJR.ONE
+     * @link https://www.mjr.one
+     */
     class DbLoader implements LoaderInterface
     {
         /**
@@ -20,7 +28,8 @@
         /**
          * @param EntityManager $entityManager
          */
-        public function __construct(EntityManager $entityManager){
+        public function __construct(EntityManager $entityManager)
+        {
             $this->entityManager = $entityManager;
         }
         /**
@@ -37,7 +46,7 @@
          */
         public function load($resource , $locale , $domain = 'messages')
         {
-            if(!$this->loadAll!==true)
+            if($this->loadAll!==true)
             {
                 return new MessageCatalogue($locale);
             }
@@ -59,7 +68,7 @@ DQL;
             {
                 foreach($results as $result)
                 {
-                    $catalogue->set($result->getTranslation(),$result->getIdenity(),$domain);
+                    $catalogue->set($result->getIdentity(),$result->getTranslation(),$domain);
                 }
             }
             return $catalogue;

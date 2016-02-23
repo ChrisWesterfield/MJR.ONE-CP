@@ -10,12 +10,15 @@
     use Mjr\Library\EntitiesBundle\Traits\SoftDeletable;
     use Mjr\Library\EntitiesBundle\Traits\SystemGroupTrait;
     use Mjr\Library\EntitiesBundle\Traits\SystemUserTrait;
+    use R\U2FTwoFactorBundle\Model\U2F\U2FKey;
     use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
     use Symfony\Component\Security\Core\User\AdvancedUserInterface;
     use Symfony\Component\Security\Core\User\EquatableInterface;
     use Symfony\Component\Security\Core\User\UserInterface;
     use Doctrine\ORM\Mapping as ORM;
     use Gedmo\Mapping\Annotation as Gedmo;
+    use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
+    use R\U2FTwoFactorBundle\Model\U2F\TwoFactorInterface as U2FTwoFactorInterface;
 
     /**
      * @ORM\Table(name="frontend_users")
@@ -29,7 +32,8 @@
      */
     class User implements
         AdvancedUserInterface,
-        EquatableInterface
+        EquatableInterface,
+        U2FTwoFactorInterface
     {
         use serializeTrait;
         use SystemGroupTrait;
@@ -106,6 +110,12 @@
         protected $LastLogin;
 
         /**
+         * @ORM\OneToMany(targetEntity="Mjr\Library\EntitiesBundle\Entity\User\YubiKey", mappedBy="user")
+         * @var ArrayCollection
+         **/
+        protected $u2fKeys;
+
+        /**
          * @var UserPasswordEncoder
          */
         protected $Encoder;
@@ -118,6 +128,7 @@
             $this->Active = false;
             $this->username = time().'-UID-'.microtime();
             $this->Groups = new ArrayCollection();
+            $this->u2fKeys = new ArrayCollection();
         }
 
         public function setEncoder(UserPasswordEncoder $enc)
@@ -510,6 +521,65 @@
             if($this->hasGroup($group))
             {
                 $this->Groups->removeElement($group);
+            }
+            return $this;
+        }
+
+        //YubiKey Extension
+
+        /**
+         * isU2FAuthEnabled
+         * @return boolean
+         **/
+        public function isU2FAuthEnabled()
+        {
+            // If the User has Keys associated, use U2F
+            // You may use a different logic here
+            return count($this->u2fKeys) > 0;
+        }
+
+        /**
+         * getU2FKeys
+         * @return ArrayCollection
+         **/
+        public function getU2FKeys()
+        {
+            return $this->u2fKeys;
+        }
+
+        /**
+         * addU2FKey
+         * @param YubiKey $key
+         * @return $this
+         **/
+        public function addU2FKey(YubiKey $key)
+        {
+            if(!$this->hasU2FKey($key))
+            {
+                $this->u2fKeys->add($key);
+            }
+            return $this;
+        }
+
+        /**
+         * @param YubiKey $key
+         * @return bool
+         */
+        public function hasU2FKey(YubiKey $key)
+        {
+            return $this->u2fKeys->contains($key);
+        }
+
+        /**
+         * removeU2FKey
+         * @param YubiKey $key
+         * @return void
+         **/
+        public function removeU2FKey(YubiKey $key)
+        {
+            if($this->hasU2FKey($key))
+            {
+                $this->u2fKeys->removeElement($key);
             }
             return $this;
         }

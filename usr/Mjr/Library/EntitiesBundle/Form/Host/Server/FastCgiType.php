@@ -8,6 +8,14 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class FastCgiType
+ * @package Mjr\Library\EntitiesBundle\Form\Host\Server
+ * @author Chris Westerfield <chris@westerfield.name>
+ * @license MPL v2.0
+ * @copyright Chris Westerfield & MJR.ONE
+ * @link https://www.mjr.one
+ */
 class FastCgiType extends AbstractType
 {
     /**

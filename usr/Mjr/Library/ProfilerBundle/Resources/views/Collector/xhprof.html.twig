@@ -18,18 +18,12 @@
                 <br />
                 <span style="color:red;">Xhprof extension not exists</span>
             {% endif %}
-                <a href="">Disable</a>
-                &nbsp;|&nbsp;
-                <a href="">Enable</a>
         {% endset %}
     {% else %}
         {% set text %}
             <div class="sf-toolbar-info-piece">
                 <b>XHProf</b>
             </div>
-            <a href="">Disable</a>
-            &nbsp;|&nbsp;
-            <a href="">Enable</a>
         {% endset %}
     {% endif %}
     {% include 'WebProfilerBundle:Profiler:toolbar_item.html.twig' with { 'link': profiler_url } %}

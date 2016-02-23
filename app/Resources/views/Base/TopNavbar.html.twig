@@ -1,0 +1,126 @@
+<!-- Header Navbar: style can be found in header.less -->
+<nav class="navbar navbar-static-top" role="navigation">
+    <!-- Navbar Right Menu -->
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            {% block NavigationTop %}
+                {% block NavigationSymbols %}
+                    {% if is_granted('ROLE_WEBSITE') %}
+
+                        {% if getConfig('FlagpmaEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('pmaUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/mysql.png') }}" title="{% trans %}phpMyAdmin{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if getConfig('FlagpgaEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('pgaUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/pgsql.ico') }}" title="{% trans %}phpPgAdmin{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if getConfig('FlagmdaEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('mdaUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/mongo.png') }}" title="{% trans %}mongoDbAdmin{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if getConfig('FlagrcpEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('rcpUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/redis.png') }}" title="{% trans %}redisAdmin{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% block NavigationWeb %}
+                        {% endblock %}
+
+                    {% endif %}
+
+                    {% if is_granted('ROLE_FILE') %}
+                        {% if getConfig('FlagwftpEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('wftpUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/wftp.gif') }}" title="{% trans %}webFtp{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% block NavigationFTP %}
+                        {% endblock %}
+                    {% endif %}
+
+                    {% if is_granted('ROLE_CUSTOMER') %}
+                        {% block NavigationAccount %}
+                        {% endblock %}
+                    {% endif %}
+
+                    {% if is_granted('ROLE_EMAIL') %}
+                        {% if getConfig('FlagwmaEnabledSite') == true %}
+                            <li class="">
+                                <a href="{{ getConfig('wmaUrl') }}" target="_blank" style="padding: 10px 15px 0 15px;">
+                                    <img src="{{ asset('images/icons/webmail.png') }}" title="{% trans %}Webmail{% endtrans %}" style="height: 35px;">
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% block NavigationMail %}
+                        {% endblock %}
+                    {% endif %}
+                {% endblock %}
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="hidden-xs">
+                            {{ app.user.firstname }} {{ app.user.lastname }}
+                            <i style="margin-top: 3px;" class="fa fa-angle-down pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% block NavigationUserMenu %}
+                        {% endblock %}
+                        {% if is_granted('ROLE_DEVELOPER') and SystemDeveloper == true and bundleExists('MjrLibraryProfilerBundle') %}
+                            <li class="user-body">
+                                <div class="pull-left">
+                                    {% if app.request.cookies.has('MJRProfiler') and app.request.cookies.get('MJRProfiler') == 'yes' %}
+                                        <a class="btn btn-success" href="{{ path('developer_disable_profiler') }}">{% trans %}disable Profiler{% endtrans %}</a>
+                                    {% else %}
+                                        <a class="btn btn-danger" href="{{ path('developer_enable_profiler') }}">{% trans %}enable Profiler{% endtrans %}</a>
+                                    {% endif %}
+                                </div>
+                                <div class="pull-right">
+                                    <a class="btn btn-danger" href="{{ path('developer_clear_cache') }}">{% trans %}clear cache{% endtrans %}</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="{{ path('preferences') }}" class="btn btn-default btn-flat">
+                                    <i class="fa fa-cogs"></i>
+                                    {% trans %}Preferences{% endtrans %}
+                                </a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ path('frontend_operations_logout') }}" class="btn btn-default btn-flat">
+                                    <i class="fa fa-sign-out"></i>
+                                    {% trans %}Sign out{% endtrans %}
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            {% endblock %}
+        </ul>
+    </div>
+
+</nav>

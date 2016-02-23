@@ -9,6 +9,7 @@ parameters:
     gedmo.listener.loggable.class: Gedmo\Loggable\LoggableListener
     mjr_library_entities.translation.class: Mjr\Library\EntitiesBundle\DbLoader
     mjr_library_entities.translation_dump.class: Mjr\Library\EntitiesBundle\DbDumper
+    mjr_library_entities.twig.config.class: Mjr\Library\EntitiesBundle\TwigConfig
 
 services:
 
@@ -28,6 +29,12 @@ services:
         class: %mjr_library_entities.config.class%
         arguments: ['@service_container','@doctrine.orm.entity_manager']
 
+
+    mjr_library_entities.twig.config:
+        class: %mjr_library_entities.twig.config.class%
+        arguments: [ '@mjr_library_entities.config' ]
+        tags:
+          - { name: twig.extension }
 
     # KernelRequest listener
     mjr_library_entities.extension.listener:

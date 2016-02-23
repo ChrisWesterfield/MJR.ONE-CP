@@ -1,0 +1,193 @@
+imports:
+    - { resource: ../security.yml }
+    - { resource: ../config.yml }
+
+# Assetic Configuration
+assetic:
+    assets:
+        frontend_css:
+            inputs:
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/bootstrap/bootstrap.less
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/less/font-awesome.less
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/css/select2.css
+            filters:
+                - lessphp
+            output: css/bootstrap.css
+        frontend_theme_css:
+            inputs:
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/build/less/AdminLTE.less
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/build/less/skins/_all-skins.less
+            filters:
+                - lessphp
+            output: css/theme.css
+        moment_js:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/moment/moment/moment.js
+            output: js/moment.js
+        #jQuery
+        jquery_js:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/jquery/jquery.js
+            output: js/jquery.js
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/transition.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/alert.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/button.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/carousel.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/collapse.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/dropdown.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/modal.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/tooltip.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/popover.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/scrollspy.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/tab.js
+                - %kernel.root_dir%/../var/vendor/twbs/bootstrap/js/affix.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/bootbox.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/growl.js
+                - %kernel.root_dir%/../usr/Mjr/Library/ToolsBundle/Resources/js/select2.full.min.js
+            output: js/bootstrap.js
+        bootstrap_switch_js:
+            inputs:
+                - %kernel.root_dir%/../usr/Components/bootstrap-switch/dist/js/bootstrap-switch.js
+            output: js/bootstrap-switch.js
+        mopa_bundle_js:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/js/mopabootstrap-collection.js
+                - %kernel.root_dir%/../var/vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/js/mopabootstrap-subnav.js
+            output: js/mopa.js
+        frontend_js:
+            inputs:
+                - %kernel.root_dir%/../usr/Mjr/Theme/AdminLTEBundle/dist/js/app.js
+            output: js/app.js
+        font_awesom_otf:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/FontAwesome.otf
+            output: fonts/FontAwesome.otf
+        font_awesom_eot:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/fontawesome-webfont.eot
+            output: fonts/fontawesome-webfont.eot
+        font_awesom_svg:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/fontawesome-webfont.svg
+            output: fonts/fontawesome-webfont.svg
+        font_awesom_ttf:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/fontawesome-webfont.ttf
+            output: fonts/fontawesome-webfont.ttf
+        font_awesom_woff:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/fontawesome-webfont.woff
+            output: fonts/fontawesome-webfont.woff
+        font_awesom_woff2:
+            inputs:
+                - %kernel.root_dir%/../var/vendor/components/font-awesome/fonts/fontawesome-webfont.woff2
+            output: fonts/fontawesome-webfont.woff2
+
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ MjrLibraryToolsBundle ]
+    #java: /usr/bin/java
+    filters:
+        lessphp:
+            file: %kernel.root_dir%/../var/vendor/oyejorge/less.php/lessc.inc.php
+            # Formatter options: compressed, lessjs, classic
+            formatter: "compressed"
+            preserve_comments: false
+        cssrewrite: ~
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        console:
+            type:  console
+
+#Bootstrap and Less Integration
+mopa_bootstrap:
+    form:
+        show_legend: true
+        show_child_legend: true
+        error_type: inline
+        templating: true
+        render_fieldset: true
+        render_collection_item: true
+        render_required_asterisk: true
+        render_optional_text: true
+        checkbox_label: 'both'
+    menu: ~
+    icons:
+        icon_set: fontawesome4
+
+mjr_library_errbit:
+    api_key: "%errbit_api_key%"
+    async: %errbit_async%
+    host: "%errbit_host%"
+    secure: %errbit_secure%
+    ignored_exceptions:
+        - Symfony\Component\HttpKernel\Exception\HttpException
+
+
+scheb_two_factor:
+
+    # Trusted computer feature
+    trusted_computer:
+        enabled: false                 # If the trusted computer feature should be enabled
+        cookie_name: trusted_computer  # Name of the trusted computer cookie
+        cookie_lifetime: 5184000       # Lifetime of the trusted computer cookie
+
+    # Regex pattern of paths you want to exclude from two-factor authentication.
+    # Useful to exclude Assetic paths or other files from being blocked.
+    # Example: ^/(css|js|images)/
+    exclude_pattern: ~
+
+    # POST/GET parameter names
+    parameter_names:
+        auth_code: _auth_code          # Name of the parameter containing the authentication code
+        trusted: _trusted              # Name of the parameter containing the trusted flag
+
+    # Email authentication config
+    email:
+        enabled: false                  # If email authentication should be enabled, default false
+        mailer: my_mailer_service      # Use alternative service to send the authentication code
+        sender_email: me@example.com   # Sender email address
+        sender_name: John Doe          # Sender name
+        digits: 4                      # Number of digits in authentication code
+        template: AcmeDemoBundle:Authentication:form.html.twig   # Template used to render the authentication form
+
+    # Google Authenticator config
+    google:
+        enabled: false                  # If Google Authenticator should be enabled, default false
+        server_name: Server Name       # Server name used in QR code
+        issuer: Issuer Name            # Issuer name used in QR code
+        template: AcmeDemoBundle:Authentication:form.html.twig   # Template used to render the authentication form
+
+    # The service which is used to persist data in the user object. By default Doctrine is used. If your entity is
+    # managed by something else (e.g. an API), you have to implement a custom persister
+    persister: scheb_two_factor.persister.doctrine
+
+    # If your Doctrine user object is managed by a model manager, which is not the default one, you have to
+    # set this option. Name of entity manager or null, which uses the default one.
+    model_manager_name: ~
+
+    # The security token classes, which trigger two-factor authentication.
+    # By default the bundle only reacts to Symfony's username+password authentication. If you want to enable
+    # two-factor authentication for other authentication methods, add their security token classes.
+    security_tokens:
+        - Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken
+
+    # A list of IP addresses, which will not trigger two-factor authentication
+    ip_whitelist:
+        - 127.0.0.1
+
+ru2_f_two_factor:
+    formTemplate: RU2FTwoFActorBundle:Authentication:form.html.twig
+    registerTemplate: RU2FTwoFActorBundle:Registration:register.html.twig
+    authCodeParameter: _auth_code

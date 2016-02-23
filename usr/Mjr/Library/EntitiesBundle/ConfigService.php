@@ -56,7 +56,7 @@
             $this->Cache = $config->get('snc_redis.default');
             $this->EntityManager = $em;
             $this->Entries = unserialize($this->Cache->get(self::CACHE_KEY));
-            if(!is_array($this->Entries))
+            if(!is_array($this->Entries) || count($this->Entries) < 1)
             {
                 $this->Entries = array();
                 $dql = <<<'DQL'

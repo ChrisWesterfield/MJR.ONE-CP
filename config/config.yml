@@ -1,9 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: system-config.yml }
-    - { resource: security.yml }
     - { resource: services.yml }
-
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
@@ -209,31 +207,6 @@ framework:
     http_method_override: true
     assets: ~
 
-#Bootstrap and Less Integration
-mopa_bootstrap:
-    form:
-        show_legend: true
-        show_child_legend: true
-        error_type: inline
-        templating: true
-        render_fieldset: true
-        render_collection_item: true
-        render_required_asterisk: true
-        render_optional_text: true
-        checkbox_label: 'both'
-    menu: ~
-    icons:
-        icon_set: fontawesome4
-
-mjr_library_errbit:
-    api_key: "%errbit_api_key%"
-    async: %errbit_async%
-    host: "%errbit_host%"
-    secure: %errbit_secure%
-    ignored_exceptions:
-        - Symfony\Component\HttpKernel\Exception\HttpException
-
-
 snc_redis:
     clients:
         #Default Caching
@@ -307,6 +280,5 @@ twig:
         SystemProjectLogoSmall: %system_config_logo_small%
         SystemProjectLogoLarge: %system_config_logo_large%
         SystemProjectName: %system_config_project_name%
-        SystemCompanyName: %system_config_company_name%
-        SystemCompanyLink: %system_config_company_link%
-        SystemLink: %system_config_company_link%
+        SystemVersion: 0.0.1
+        SystemDeveloper: false

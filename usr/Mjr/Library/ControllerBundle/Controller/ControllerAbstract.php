@@ -113,7 +113,15 @@
          */
         protected function getCache()
         {
-            return $this->container->get('scn_redis.default');
+            return $this->container->get('snc_redis.default');
+        }
+
+        /**
+         * @return mixed
+         */
+        protected function clearRedisCache()
+        {
+            return $this->getCache()->flushAll();
         }
 
         /**

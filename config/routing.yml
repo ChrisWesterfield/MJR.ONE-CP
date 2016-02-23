@@ -147,3 +147,6 @@ mjr_frontend_dashboard:
     type:     annotation
     prefix:   /
 
+ru2_f_two_factor:
+    path:   /Operations/U2F/Register
+    defaults: { _controller: RU2FTwoFactorBundle:Register:u2f }
